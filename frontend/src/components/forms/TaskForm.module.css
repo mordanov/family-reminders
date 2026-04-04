@@ -1,0 +1,30 @@
+.form { display: flex; flex-direction: column; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.row { display: flex; gap: 12px; }
+.label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.input, .select, .textarea {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 11px;
+  color: var(--text);
+  font-size: 13px;
+  width: 100%;
+  transition: border-color var(--transition);
+}
+.input:focus, .select:focus, .textarea:focus { border-color: var(--accent); }
+.select { appearance: none; cursor: pointer; }
+.textarea { resize: vertical; min-height: 60px; }
+.checkRow { display: flex; gap: 20px; flex-wrap: wrap; }
+.checkLabel { display: flex; align-items: center; gap: 7px; font-size: 13px; cursor: pointer; color: var(--text-muted); }
+.checkLabel input { accent-color: var(--accent); width: 14px; height: 14px; }
+.checkLabel:hover { color: var(--text); }
+.colorRow { display: flex; align-items: center; gap: 8px; }
+.colorPicker { width: 36px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: none; cursor: pointer; padding: 2px; }
+.colorVal { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+.recurBox { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.actions { display: flex; justify-content: flex-end; gap: 10px; padding-top: 4px; }
+.cancelBtn { background: none; color: var(--text-muted); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px; transition: all var(--transition); }
+.cancelBtn:hover { border-color: var(--text-faint); color: var(--text); }
+.saveBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 8px 18px; font-size: 13px; font-weight: 500; transition: background var(--transition); }
+.saveBtn:hover { background: var(--accent-hover); }

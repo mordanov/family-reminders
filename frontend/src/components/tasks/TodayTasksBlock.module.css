@@ -1,0 +1,58 @@
+.block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.blockHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.blockTitle { font-size: 14px; font-weight: 600; }
+.addBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 6px 14px; font-size: 12px; font-weight: 500; transition: background var(--transition); }
+.addBtn:hover { background: var(--accent-hover); }
+.empty { color: var(--text-muted); font-size: 13px; padding: 20px 0; text-align: center; }
+.taskList { display: flex; flex-direction: column; gap: 8px; }
+
+.taskCard {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--accent);
+  padding: 12px 14px;
+  transition: background var(--transition);
+  position: relative;
+}
+.taskCard:hover { background: var(--bg-hover); }
+.taskCard:hover .taskActions { opacity: 1; }
+
+.taskTime {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  min-width: 42px;
+}
+.taskTime span { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+.timeEnd { color: var(--text-faint) !important; }
+
+.taskBody { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.taskDesc { font-size: 13px; font-weight: 500; }
+.taskMeta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.catBadge { font-size: 11px; color: var(--text-muted); }
+.recurBadge { font-size: 11px; color: var(--accent); }
+.reminderBadge { font-size: 12px; }
+
+.taskActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.actionBtn {
+  background: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background var(--transition), color var(--transition);
+}
+.actionBtn:hover { background: var(--bg-card); color: var(--text); }
+.actionBtn.danger:hover { color: var(--danger); }

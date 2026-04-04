@@ -1,0 +1,41 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color var(--transition);
+}
+.card:hover { border-color: var(--border-light); }
+
+.top { display: flex; align-items: flex-start; gap: 10px; }
+.desc { flex: 1; font-size: 14px; font-weight: 500; line-height: 1.5; }
+.cardActions { display: flex; gap: 2px; opacity: 0; transition: opacity var(--transition); flex-shrink: 0; }
+.card:hover .cardActions { opacity: 1; }
+.iconBtn { background: none; color: var(--text-faint); font-size: 13px; padding: 4px 6px; border-radius: 4px; transition: all var(--transition); }
+.iconBtn:hover { background: var(--bg-elevated); color: var(--text); }
+.iconBtn.danger:hover { color: var(--danger); }
+
+.progressSection { display: flex; flex-direction: column; gap: 6px; }
+.progressHeader { display: flex; justify-content: space-between; align-items: center; }
+.progressLabel { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.progressPct { font-size: 13px; font-weight: 600; font-family: var(--font-mono); }
+.progressBar { height: 4px; background: var(--bg-elevated); border-radius: 2px; overflow: hidden; }
+.progressFill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+
+.actCount { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+.actIcon { font-size: 12px; }
+
+.actList { display: flex; flex-direction: column; gap: 5px; }
+.actChip { font-size: 12px; color: var(--text-muted); padding: 4px 0; display: flex; align-items: center; gap: 6px; }
+.actChip.done { color: var(--text-faint); text-decoration: line-through; }
+.actMore { font-size: 11px; color: var(--text-faint); padding: 2px 0; }
+
+.copyRow { display: flex; align-items: center; gap: 8px; padding-top: 4px; border-top: 1px solid var(--border); }
+.select { flex: 1; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 10px; color: var(--text); font-size: 12px; appearance: none; }
+.select:focus { border-color: var(--accent); outline: none; }
+.copyBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 7px 12px; font-size: 12px; font-weight: 500; transition: background var(--transition); }
+.copyBtn:hover:not(:disabled) { background: var(--accent-hover); }
+.copyBtn:disabled { opacity: 0.5; cursor: not-allowed; }

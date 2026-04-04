@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Docker
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# DB data (local dev)
+postgres_data/

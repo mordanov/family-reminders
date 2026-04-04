@@ -1,0 +1,10 @@
+.root { padding: 28px 32px; height: 100vh; display: flex; flex-direction: column; }
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-shrink: 0; }
+.title { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; }
+.addBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 8px 18px; font-size: 13px; font-weight: 500; transition: background var(--transition); }
+.addBtn:hover { background: var(--accent-hover); }
+.calWrap { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; overflow: hidden; }
+.eventInner { display: flex; align-items: center; gap: 4px; width: 100%; overflow: hidden; }
+.eventEmoji { font-size: 11px; flex-shrink: 0; }
+.eventTitle { font-size: 11px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.recurIcon { font-size: 10px; flex-shrink: 0; opacity: 0.7; }

@@ -1,0 +1,45 @@
+.block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.blockHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.blockTitle { font-size: 14px; font-weight: 600; }
+.addBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 6px 14px; font-size: 12px; font-weight: 500; transition: background var(--transition); }
+.addBtn:hover { background: var(--accent-hover); }
+.empty { color: var(--text-muted); font-size: 13px; padding: 20px 0; text-align: center; }
+.list { display: flex; flex-direction: column; gap: 8px; }
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--accent);
+  padding: 11px 14px;
+  transition: background var(--transition), opacity var(--transition);
+}
+.card:hover { background: var(--bg-hover); }
+.card:hover .actions { opacity: 1; }
+.card.completed { opacity: 0.5; }
+
+.checkBtn {
+  background: none;
+  color: var(--text-faint);
+  font-size: 16px;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+.checkBtn.checked { color: var(--success); }
+.checkBtn:hover { color: var(--text); }
+
+.body { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.desc { font-size: 13px; font-weight: 500; }
+.card.completed .desc { text-decoration: line-through; color: var(--text-muted); }
+.meta { display: flex; align-items: center; gap: 8px; }
+.catBadge { font-size: 11px; color: var(--text-muted); }
+.priority { font-size: 11px; font-family: var(--font-mono); color: var(--text-faint); background: var(--bg-card); border-radius: 4px; padding: 1px 5px; }
+
+.actions { display: flex; gap: 4px; opacity: 0; transition: opacity var(--transition); }
+.actionBtn { background: none; color: var(--text-muted); font-size: 13px; padding: 4px 6px; border-radius: 4px; transition: background var(--transition), color var(--transition); }
+.actionBtn:hover { background: var(--bg-card); color: var(--text); }
+.actionBtn.danger:hover { color: var(--danger); }

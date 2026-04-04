@@ -1,0 +1,18 @@
+.form { display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.textarea { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; color: var(--text); font-size: 13px; width: 100%; resize: vertical; transition: border-color var(--transition); }
+.textarea:focus { border-color: var(--accent); outline: none; }
+.empty { color: var(--text-faint); font-size: 13px; font-style: italic; padding: 8px 0; }
+.actList { display: flex; flex-direction: column; gap: 6px; max-height: 260px; overflow-y: auto; }
+.actItem { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; transition: border-color var(--transition), background var(--transition); }
+.actItem:hover { background: var(--bg-hover); }
+.actItem.selected { border-color: var(--accent); background: var(--accent-glow); }
+.actItem input { accent-color: var(--accent); flex-shrink: 0; }
+.actDesc { flex: 1; font-size: 13px; }
+.doneBadge { font-size: 10px; background: var(--success); color: #000; border-radius: 4px; padding: 1px 6px; font-weight: 600; }
+.actions { display: flex; justify-content: flex-end; gap: 10px; padding-top: 4px; }
+.cancelBtn { background: none; color: var(--text-muted); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px; transition: all var(--transition); }
+.cancelBtn:hover { border-color: var(--text-faint); color: var(--text); }
+.saveBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 8px 18px; font-size: 13px; font-weight: 500; transition: background var(--transition); }
+.saveBtn:hover { background: var(--accent-hover); }

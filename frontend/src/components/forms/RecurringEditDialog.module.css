@@ -1,0 +1,11 @@
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.dialog { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; max-width: 400px; width: 100%; box-shadow: var(--shadow); }
+.title { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+.body { color: var(--text-muted); font-size: 13px; margin-bottom: 22px; line-height: 1.5; }
+.actions { display: flex; flex-direction: column; gap: 8px; }
+.cancelBtn { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px; color: var(--text-muted); font-size: 13px; transition: all var(--transition); }
+.cancelBtn:hover { color: var(--text); border-color: var(--text-faint); }
+.scopeBtn { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px; color: var(--text); font-size: 13px; text-align: left; transition: all var(--transition); }
+.scopeBtn:hover { border-color: var(--accent); background: var(--accent-glow); }
+.scopeBtn.future { border-color: var(--danger); color: var(--danger); }
+.scopeBtn.future:hover { background: rgba(255,79,106,0.1); }

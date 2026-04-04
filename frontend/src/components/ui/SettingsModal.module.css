@@ -1,0 +1,23 @@
+.section { margin-bottom: 24px; }
+.section:last-child { margin-bottom: 0; }
+.sectionTitle { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.tzRow { display: flex; gap: 10px; }
+.select { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 11px; color: var(--text); font-size: 13px; flex: 1; appearance: none; }
+.select:focus { border-color: var(--accent); outline: none; }
+.input { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 10px; color: var(--text); font-size: 13px; }
+.input:focus { border-color: var(--accent); outline: none; }
+.saveBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 8px 14px; font-size: 12px; font-weight: 500; white-space: nowrap; transition: background var(--transition); }
+.saveBtn:hover { background: var(--accent-hover); }
+.colorPicker { width: 36px; height: 34px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: none; cursor: pointer; padding: 2px; }
+.catList { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.catRow { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--bg-elevated); border-radius: var(--radius-sm); }
+.catRow:hover .iconBtn { opacity: 1; }
+.catEditRow { display: flex; align-items: center; gap: 6px; }
+.catDot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.catEmoji { font-size: 14px; }
+.catName { flex: 1; font-size: 13px; }
+.iconBtn { background: none; color: var(--text-faint); font-size: 12px; padding: 3px 6px; border-radius: 4px; opacity: 0; transition: all var(--transition); }
+.catRow:hover .iconBtn { opacity: 1; }
+.iconBtn:hover { background: var(--bg-hover); color: var(--text); }
+.iconBtn.danger:hover { color: var(--danger); }
+.addCatRow { display: flex; align-items: center; gap: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
