@@ -5,6 +5,7 @@ from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 from app.core.config import settings
 from app.core.database import get_db
 from app.models.models import User
@@ -46,7 +47,7 @@ async def get_current_user(
     except JWTError:
         raise credentials_exception
 
-    result = await db.execute(select(User).where(User.username == username))
+    result = await db.execute(select(User).where(User.username == username).options(selectinload(User.settings)))
     user = result.scalar_one_or_none()
     if user is None or not user.is_active:
         raise credentials_exception
