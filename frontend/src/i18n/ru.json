@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "tasks": "Задачи",
+    "goals": "Цели",
+    "weekly": "Неделя",
+    "archive": "Архив",
+    "settings": "Настройки",
+    "signOut": "Выйти"
+  },
+  "login": {
+    "subtitle": "Войдите, чтобы продолжить",
+    "username": "Имя пользователя",
+    "usernamePlaceholder": "user1",
+    "password": "Пароль",
+    "submit": "Войти",
+    "submitting": "Вход…",
+    "error": "Неверные данные",
+    "hint": "По умолчанию: user1 / user1_change_me"
+  },
+  "tasks": {
+    "title": "Задачи",
+    "loading": "Загрузка…",
+    "error": "Не удалось загрузить данные"
+  },
+  "todayTasks": {
+    "title": "Задачи на сегодня",
+    "add": "+ Добавить задачу",
+    "empty": "Задач на сегодня нет. Отличный день!",
+    "recurring": "повторяется",
+    "deleteError": "Не удалось удалить задачу",
+    "deleted": "Задача удалена"
+  },
+  "reminders": {
+    "title": "Напоминания"
+  },
+  "activities": {
+    "title": "Активности",
+    "add": "+ Добавить активность",
+    "empty": "Активностей пока нет.",
+    "markComplete": "Отметить выполненной",
+    "markIncomplete": "Отметить невыполненной",
+    "updateError": "Не удалось обновить активность",
+    "deleteError": "Не удалось удалить активность",
+    "deleted": "Активность удалена"
+  },
+  "goals": {
+    "title": "Жизненные цели",
+    "subtitle": "Долгосрочные стремления, связанные с активностями",
+    "add": "+ Новая цель",
+    "empty": "Целей пока нет. Начните с создания первой.",
+    "loading": "Загрузка…",
+    "loadError": "Не удалось загрузить цели",
+    "deleteError": "Не удалось удалить цель",
+    "deleted": "Цель удалена",
+    "progress": "Прогресс",
+    "activity": "активность",
+    "activities": "активностей",
+    "copyToUser": "Копировать пользователю",
+    "selectUser": "Выбрать пользователя…",
+    "copy": "Копировать",
+    "copyError": "Не удалось скопировать цель",
+    "copied": "Цель скопирована!",
+    "edit": "Редактировать",
+    "delete": "Удалить"
+  },
+  "weekly": {
+    "title": "Расписание недели",
+    "add": "+ Добавить задачу",
+    "error": "Не удалось загрузить расписание"
+  },
+  "archive": {
+    "title": "Архив",
+    "tasksTab": "Задачи",
+    "activitiesTab": "Активности",
+    "startDate": "С",
+    "endDate": "По",
+    "category": "Категория",
+    "allCategories": "Все категории",
+    "apply": "Применить",
+    "loadError": "Не удалось загрузить архив",
+    "noTasks": "Задач за выбранный период нет.",
+    "noActivities": "Завершённых активностей нет.",
+    "time": "Время",
+    "description": "Описание",
+    "completedActivities": "Завершённые активности"
+  },
+  "settings": {
+    "title": "Настройки",
+    "timezone": "Часовой пояс",
+    "save": "Сохранить",
+    "timezoneUpdated": "Часовой пояс обновлён",
+    "timezoneError": "Не удалось обновить часовой пояс",
+    "categories": "Категории",
+    "categoryNamePlaceholder": "Название категории",
+    "emojiPlaceholder": "эмодзи",
+    "add": "Добавить",
+    "categoryCreated": "Категория создана",
+    "categoryUpdated": "Категория обновлена",
+    "categoryDeleted": "Категория удалена",
+    "createError": "Не удалось создать категорию",
+    "updateError": "Не удалось обновить",
+    "deleteError": "Не удалось удалить",
+    "language": "Язык",
+    "theme": "Тема",
+    "themeDark": "Тёмная",
+    "themeLight": "Светлая",
+    "themeNavy": "Синяя",
+    "themeWarm": "Тёплая"
+  },
+  "forms": {
+    "cancel": "Отмена",
+    "saveChanges": "Сохранить",
+    "task": {
+      "editTitle": "Редактировать задачу",
+      "newTitle": "Новая задача",
+      "description": "Описание",
+      "descriptionPlaceholder": "Что нужно сделать?",
+      "start": "Начало",
+      "end": "Конец",
+      "category": "Категория",
+      "categoryNone": "Нет",
+      "color": "Цвет",
+      "remindAtStart": "Напомнить в начале",
+      "recurring": "Повторяющаяся задача",
+      "frequency": "Частота",
+      "frequencyDaily": "ежедневно",
+      "frequencyWeekly": "еженедельно",
+      "frequencyMonthly": "ежемесячно",
+      "frequencyYearly": "ежегодно",
+      "everyN": "Каждые N",
+      "endDate": "Дата окончания (пусто = 1 год)",
+      "create": "Создать задачу",
+      "saveError": "Не удалось сохранить задачу",
+      "created": "Задача создана",
+      "updated": "Задача обновлена"
+    },
+    "activity": {
+      "editTitle": "Редактировать активность",
+      "newTitle": "Новая активность",
+      "description": "Описание",
+      "descriptionPlaceholder": "напр. Посадить огурцы",
+      "category": "Категория",
+      "categoryNone": "Нет",
+      "priority": "Приоритет (1–10)",
+      "color": "Цвет",
+      "assignTo": "Назначить",
+      "create": "Создать активность",
+      "saveError": "Не удалось сохранить активность",
+      "created": "Активность создана",
+      "updated": "Активность обновлена"
+    },
+    "goal": {
+      "editTitle": "Редактировать цель",
+      "newTitle": "Новая жизненная цель",
+      "description": "Описание",
+      "descriptionPlaceholder": "Опишите вашу жизненную цель…",
+      "linkActivities": "Связать с активностями",
+      "linkActivitiesCount": "Связать с активностями (выбрано: {{count}})",
+      "noActivities": "Активностей нет. Сначала создайте их во вкладке «Задачи».",
+      "done": "готово",
+      "create": "Создать цель",
+      "saveError": "Не удалось сохранить цель",
+      "created": "Цель создана",
+      "updated": "Цель обновлена"
+    },
+    "recurring": {
+      "deleteTitle": "Удалить повторяющуюся задачу",
+      "editTitle": "Редактировать повторяющуюся задачу",
+      "body": "Это повторяющаяся задача. Что вы хотите {{action}}?",
+      "delete": "удалить",
+      "edit": "редактировать",
+      "thisOnly": "Только это событие",
+      "thisFuture": "Это и следующие события"
+    }
+  },
+  "common": {
+    "loading": "Загрузка…"
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getGoals, getActivities, deleteGoal, getUsers } from '../api/client'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import GoalCard from '../components/goals/GoalCard'
 import GoalForm from '../components/forms/GoalForm'
 import styles from './GoalsPage.module.css'
@@ -12,6 +13,7 @@ export default function GoalsPage() {
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [editGoal, setEditGoal] = useState(null)
+  const { t } = useTranslation()
 
   const refresh = async () => {
     try {
@@ -20,7 +22,7 @@ export default function GoalsPage() {
       setActivities(a.data)
       setUsers(u.data)
     } catch {
-      toast.error('Failed to load goals')
+      toast.error(t('goals.loadError'))
     } finally {
       setLoading(false)
     }
@@ -31,29 +33,29 @@ export default function GoalsPage() {
   const handleDelete = async (id) => {
     try {
       await deleteGoal(id)
-      toast.success('Goal deleted')
+      toast.success(t('goals.deleted'))
       refresh()
     } catch {
-      toast.error('Failed to delete goal')
+      toast.error(t('goals.deleteError'))
     }
   }
 
-  if (loading) return <div className={styles.loading}>Loading…</div>
+  if (loading) return <div className={styles.loading}>{t('common.loading')}</div>
 
   return (
     <div className={styles.root}>
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>Life Goals</h1>
-          <p className={styles.subtitle}>Long-term aspirations powered by activities</p>
+          <h1 className={styles.title}>{t('goals.title')}</h1>
+          <p className={styles.subtitle}>{t('goals.subtitle')}</p>
         </div>
-        <button className={styles.addBtn} onClick={() => { setEditGoal(null); setShowForm(true) }}>+ New Goal</button>
+        <button className={styles.addBtn} onClick={() => { setEditGoal(null); setShowForm(true) }}>{t('goals.add')}</button>
       </div>
 
       {goals.length === 0 ? (
         <div className={styles.empty}>
           <div className={styles.emptyIcon}>◈</div>
-          <p>No life goals yet. Start by creating one.</p>
+          <p>{t('goals.empty')}</p>
         </div>
       ) : (
         <div className={styles.grid}>

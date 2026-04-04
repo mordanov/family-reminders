@@ -61,4 +61,8 @@ export const updateGoal = (id, data) => api.put(`/goals/${id}`, data)
 export const deleteGoal = (id) => api.delete(`/goals/${id}`)
 export const copyGoal = (id, targetUserId) => api.post(`/goals/${id}/copy`, { target_user_id: targetUserId })
 
+// Archive
+export const getArchivedTasks = (params) => api.get('/tasks/archive', { params })
+export const getArchivedActivities = (params) => api.get('/activities/archive', { params })
+
 export default api

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { format } from 'date-fns'
 import { deleteTask } from '../../api/client'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import TaskForm from '../forms/TaskForm'
 import RecurringEditDialog from '../forms/RecurringEditDialog'
 import styles from './TodayTasksBlock.module.css'
@@ -10,16 +11,17 @@ export default function TodayTasksBlock({ tasks, categories, onRefresh }) {
   const [showForm, setShowForm] = useState(false)
   const [editTask, setEditTask] = useState(null)
   const [deleteTarget, setDeleteTarget] = useState(null)
+  const { t } = useTranslation()
 
   const getCat = (id) => categories.find((c) => c.id === id)
 
   const handleDelete = async (task, scope) => {
     try {
       await deleteTask(task.id, scope)
-      toast.success('Task deleted')
+      toast.success(t('todayTasks.deleted'))
       onRefresh()
     } catch {
-      toast.error('Failed to delete task')
+      toast.error(t('todayTasks.deleteError'))
     }
     setDeleteTarget(null)
   }
@@ -32,12 +34,12 @@ export default function TodayTasksBlock({ tasks, categories, onRefresh }) {
   return (
     <section className={styles.block}>
       <div className={styles.blockHeader}>
-        <h2 className={styles.blockTitle}>Today's Tasks</h2>
-        <button className={styles.addBtn} onClick={() => { setEditTask(null); setShowForm(true) }}>+ Add Task</button>
+        <h2 className={styles.blockTitle}>{t('todayTasks.title')}</h2>
+        <button className={styles.addBtn} onClick={() => { setEditTask(null); setShowForm(true) }}>{t('todayTasks.add')}</button>
       </div>
 
       {tasks.length === 0 ? (
-        <p className={styles.empty}>No tasks for today. Enjoy your day!</p>
+        <p className={styles.empty}>{t('todayTasks.empty')}</p>
       ) : (
         <div className={styles.taskList}>
           {tasks.map((task) => {
@@ -58,7 +60,7 @@ export default function TodayTasksBlock({ tasks, categories, onRefresh }) {
                   <span className={styles.taskDesc}>{task.description}</span>
                   <div className={styles.taskMeta}>
                     {cat && <span className={styles.catBadge}>{cat.emoji} {cat.name}</span>}
-                    {task.is_recurring && <span className={styles.recurBadge}>↻ recurring</span>}
+                    {task.is_recurring && <span className={styles.recurBadge}>↻ {t('todayTasks.recurring')}</span>}
                     {task.remind_at_start && <span className={styles.reminderBadge}>🔔</span>}
                   </div>
                 </div>

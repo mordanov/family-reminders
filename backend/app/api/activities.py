@@ -1,11 +1,11 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.services.activity_service import ActivityService
 from app.schemas.activities import ActivityCreate, ActivityUpdate, ActivityOut
 from app.auth.security import get_current_user
 from app.models.models import User
-from typing import List
+from typing import List, Optional
 
 router = APIRouter(prefix="/activities", tags=["activities"])
 
@@ -26,6 +26,16 @@ async def create_activity(data: ActivityCreate, db: AsyncSession = Depends(get_d
 async def update_activity(act_id: int, data: ActivityUpdate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     svc = ActivityService(db)
     return await svc.update(act_id, current_user.id, data)
+
+
+@router.get("/archive", response_model=List[ActivityOut])
+async def archive_activities(
+    category_id: Optional[int] = Query(None),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    svc = ActivityService(db)
+    return await svc.get_completed(current_user.id, category_id)
 
 
 @router.delete("/{act_id}")

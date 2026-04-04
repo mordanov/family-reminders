@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import useAuthStore from '../store/authStore'
 import styles from './LoginPage.module.css'
 
@@ -10,6 +11,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const { login } = useAuthStore()
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,7 +20,7 @@ export default function LoginPage() {
       await login(username, password)
       navigate('/tasks')
     } catch {
-      toast.error('Invalid credentials')
+      toast.error(t('login.error'))
     } finally {
       setLoading(false)
     }
@@ -31,21 +33,21 @@ export default function LoginPage() {
           <span className={styles.logoIcon}>◎</span>
           <span className={styles.logoText}>Reminders</span>
         </div>
-        <p className={styles.subtitle}>Sign in to continue</p>
+        <p className={styles.subtitle}>{t('login.subtitle')}</p>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
-            <label className={styles.label}>Username</label>
+            <label className={styles.label}>{t('login.username')}</label>
             <input
               className={styles.input}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="user1"
+              placeholder={t('login.usernamePlaceholder')}
               autoFocus
               required
             />
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>Password</label>
+            <label className={styles.label}>{t('login.password')}</label>
             <input
               className={styles.input}
               type="password"
@@ -56,10 +58,10 @@ export default function LoginPage() {
             />
           </div>
           <button className={styles.btn} type="submit" disabled={loading}>
-            {loading ? 'Signing in…' : 'Sign in'}
+            {loading ? t('login.submitting') : t('login.submit')}
           </button>
         </form>
-        <p className={styles.hint}>Default: user1 / user1_change_me</p>
+        <p className={styles.hint}>{t('login.hint')}</p>
       </div>
     </div>
   )

@@ -37,6 +37,21 @@ class ActivityRepository:
         )
         return result.scalars().unique().all()
 
+    async def get_completed_for_user(self, user_id: int, category_id: Optional[int] = None) -> List[Activity]:
+        q = self._q().where(
+            or_(
+                Activity.creator_id == user_id,
+                Activity.id.in_(
+                    select(ActivityUser.activity_id).where(ActivityUser.user_id == user_id)
+                )
+            ),
+            Activity.completed == True,
+        )
+        if category_id is not None:
+            q = q.where(Activity.category_id == category_id)
+        result = await self.db.execute(q.order_by(Activity.created_at.desc()))
+        return result.scalars().unique().all()
+
     async def create(self, user_id: int, data: ActivityCreate) -> Activity:
         act = Activity(
             creator_id=user_id,

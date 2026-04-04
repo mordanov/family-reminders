@@ -1,19 +1,22 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import useAuthStore from '../store/authStore'
 import SettingsModal from '../components/ui/SettingsModal'
 import styles from './MainLayout.module.css'
-
-const navItems = [
-  { to: '/tasks', label: 'Tasks', icon: '◻' },
-  { to: '/goals', label: 'Life Goals', icon: '◈' },
-  { to: '/weekly', label: 'Weekly', icon: '▦' },
-]
 
 export default function MainLayout() {
   const { user, logout } = useAuthStore()
   const navigate = useNavigate()
   const [showSettings, setShowSettings] = useState(false)
+  const { t } = useTranslation()
+
+  const navItems = [
+    { to: '/tasks', label: t('nav.tasks'), icon: '◻' },
+    { to: '/goals', label: t('nav.goals'), icon: '◈' },
+    { to: '/weekly', label: t('nav.weekly'), icon: '▦' },
+    { to: '/archive', label: t('nav.archive'), icon: '◫' },
+  ]
 
   const handleLogout = () => {
     logout()
@@ -44,12 +47,12 @@ export default function MainLayout() {
         <div className={styles.bottom}>
           <button className={styles.settingsBtn} onClick={() => setShowSettings(true)}>
             <span>⚙</span>
-            <span>Settings</span>
+            <span>{t('nav.settings')}</span>
           </button>
           <div className={styles.userRow}>
             <div className={styles.avatar}>{user?.username?.[0]?.toUpperCase()}</div>
             <span className={styles.username}>{user?.username}</span>
-            <button className={styles.logoutBtn} onClick={handleLogout} title="Sign out">↪</button>
+            <button className={styles.logoutBtn} onClick={handleLogout} title={t('nav.signOut')}>↪</button>
           </div>
         </div>
       </aside>

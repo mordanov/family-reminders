@@ -1,7 +1,9 @@
 import { format } from 'date-fns'
+import { useTranslation } from 'react-i18next'
 import styles from './RemindersBlock.module.css'
 
 export default function RemindersBlock({ reminders, categories }) {
+  const { t } = useTranslation()
   if (!reminders.length) return null
 
   const getCat = (id) => categories.find((c) => c.id === id)
@@ -10,7 +12,7 @@ export default function RemindersBlock({ reminders, categories }) {
     <section className={styles.block}>
       <div className={styles.blockHeader}>
         <span className={styles.bellIcon}>🔔</span>
-        <h2 className={styles.blockTitle}>Reminders</h2>
+        <h2 className={styles.blockTitle}>{t('reminders.title')}</h2>
         <span className={styles.badge}>{reminders.length}</span>
       </div>
       <div className={styles.list}>

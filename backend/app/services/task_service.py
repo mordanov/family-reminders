@@ -87,6 +87,16 @@ class TaskService:
         updated = await self.repo.update(task, data)
         return _serialize(updated)
 
+    async def get_archive(
+        self,
+        user_id: int,
+        start_dt,
+        end_dt,
+        category_id=None,
+    ) -> List[TaskOut]:
+        tasks = await self.repo.get_archive_for_user(user_id, start_dt, end_dt, category_id)
+        return [_serialize(t) for t in tasks]
+
     async def delete(self, task_id: int, user_id: int, scope: str = "this") -> None:
         task = await self.repo.get_by_id(task_id)
         if not task:

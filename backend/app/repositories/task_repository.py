@@ -129,6 +129,24 @@ class TaskRepository:
             t.is_deleted = True
         await self.db.flush()
 
+    async def get_archive_for_user(
+        self,
+        user_id: int,
+        start_dt: datetime,
+        end_dt: datetime,
+        category_id: Optional[int] = None,
+    ) -> List[Task]:
+        q = self._task_query().where(
+            Task.creator_id == user_id,
+            Task.is_deleted == False,
+            Task.start_datetime >= start_dt,
+            Task.start_datetime <= end_dt,
+        )
+        if category_id is not None:
+            q = q.where(Task.category_id == category_id)
+        result = await self.db.execute(q.order_by(Task.start_datetime.desc()))
+        return result.scalars().all()
+
     async def get_future_recurring(self, original_task_id: int, from_datetime: datetime) -> List[Task]:
         result = await self.db.execute(
             self._task_query().where(

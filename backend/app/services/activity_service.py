@@ -41,6 +41,10 @@ class ActivityService:
         updated = await self.repo.update(act, data)
         return _serialize(updated)
 
+    async def get_completed(self, user_id: int, category_id=None) -> List[ActivityOut]:
+        acts = await self.repo.get_completed_for_user(user_id, category_id)
+        return [_serialize(a) for a in acts]
+
     async def delete(self, act_id: int, user_id: int) -> None:
         act = await self.repo.get_by_id(act_id)
         if not act:

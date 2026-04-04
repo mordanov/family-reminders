@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { createGoal, updateGoal } from '../../api/client'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import Modal from '../ui/Modal'
 import useAuthStore from '../../store/authStore'
 import styles from './GoalForm.module.css'
 
 export default function GoalForm({ goal, activities, onClose, onSaved }) {
   const isEdit = !!goal
+  const { t } = useTranslation()
   const { user } = useAuthStore()
 
   // Only show activities visible to current user
@@ -29,36 +31,40 @@ export default function GoalForm({ goal, activities, onClose, onSaved }) {
     try {
       if (isEdit) {
         await updateGoal(goal.id, payload)
-        toast.success('Goal updated')
+        toast.success(t('forms.goal.updated'))
       } else {
         await createGoal(payload)
-        toast.success('Goal created')
+        toast.success(t('forms.goal.created'))
       }
       onSaved()
     } catch {
-      toast.error('Failed to save goal')
+      toast.error(t('forms.goal.saveError'))
     }
   }
 
   return (
-    <Modal onClose={onClose} title={isEdit ? 'Edit Life Goal' : 'New Life Goal'}>
+    <Modal onClose={onClose} title={isEdit ? t('forms.goal.editTitle') : t('forms.goal.newTitle')}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.field}>
-          <label className={styles.label}>Description</label>
+          <label className={styles.label}>{t('forms.goal.description')}</label>
           <textarea
             className={styles.textarea}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
             rows={3}
-            placeholder="Describe your life goal…"
+            placeholder={t('forms.goal.descriptionPlaceholder')}
           />
         </div>
 
         <div className={styles.field}>
-          <label className={styles.label}>Link Activities ({selectedIds.length} selected)</label>
+          <label className={styles.label}>
+            {selectedIds.length > 0
+              ? t('forms.goal.linkActivitiesCount', { count: selectedIds.length })
+              : t('forms.goal.linkActivities')}
+          </label>
           {myActivities.length === 0 ? (
-            <p className={styles.empty}>No activities available. Create some in the Tasks tab first.</p>
+            <p className={styles.empty}>{t('forms.goal.noActivities')}</p>
           ) : (
             <div className={styles.actList}>
               {myActivities.map((a) => (
@@ -69,7 +75,7 @@ export default function GoalForm({ goal, activities, onClose, onSaved }) {
                     onChange={() => toggleActivity(a.id)}
                   />
                   <span className={styles.actDesc}>{a.description}</span>
-                  {a.completed && <span className={styles.doneBadge}>done</span>}
+                  {a.completed && <span className={styles.doneBadge}>{t('forms.goal.done')}</span>}
                 </label>
               ))}
             </div>
@@ -77,8 +83,8 @@ export default function GoalForm({ goal, activities, onClose, onSaved }) {
         </div>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.cancelBtn} onClick={onClose}>Cancel</button>
-          <button type="submit" className={styles.saveBtn}>{isEdit ? 'Save Changes' : 'Create Goal'}</button>
+          <button type="button" className={styles.cancelBtn} onClick={onClose}>{t('forms.cancel')}</button>
+          <button type="submit" className={styles.saveBtn}>{isEdit ? t('forms.saveChanges') : t('forms.goal.create')}</button>
         </div>
       </form>
     </Modal>

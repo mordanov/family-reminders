@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { updateActivity, deleteActivity } from '../../api/client'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import ActivityForm from '../forms/ActivityForm'
 import styles from './ActivitiesBlock.module.css'
 
 export default function ActivitiesBlock({ activities, categories, onRefresh }) {
   const [showForm, setShowForm] = useState(false)
   const [editActivity, setEditActivity] = useState(null)
+  const { t } = useTranslation()
 
   const getCat = (id) => categories.find((c) => c.id === id)
 
@@ -15,29 +17,29 @@ export default function ActivitiesBlock({ activities, categories, onRefresh }) {
       await updateActivity(act.id, { completed: !act.completed })
       onRefresh()
     } catch {
-      toast.error('Failed to update activity')
+      toast.error(t('activities.updateError'))
     }
   }
 
   const handleDelete = async (id) => {
     try {
       await deleteActivity(id)
-      toast.success('Activity deleted')
+      toast.success(t('activities.deleted'))
       onRefresh()
     } catch {
-      toast.error('Failed to delete activity')
+      toast.error(t('activities.deleteError'))
     }
   }
 
   return (
     <section className={styles.block}>
       <div className={styles.blockHeader}>
-        <h2 className={styles.blockTitle}>Activities</h2>
-        <button className={styles.addBtn} onClick={() => { setEditActivity(null); setShowForm(true) }}>+ Add Activity</button>
+        <h2 className={styles.blockTitle}>{t('activities.title')}</h2>
+        <button className={styles.addBtn} onClick={() => { setEditActivity(null); setShowForm(true) }}>{t('activities.add')}</button>
       </div>
 
       {activities.length === 0 ? (
-        <p className={styles.empty}>No activities yet.</p>
+        <p className={styles.empty}>{t('activities.empty')}</p>
       ) : (
         <div className={styles.list}>
           {activities.map((act) => {
@@ -51,7 +53,7 @@ export default function ActivitiesBlock({ activities, categories, onRefresh }) {
                 <button
                   className={`${styles.checkBtn} ${act.completed ? styles.checked : ''}`}
                   onClick={() => toggleComplete(act)}
-                  title={act.completed ? 'Mark incomplete' : 'Mark complete'}
+                  title={act.completed ? t('activities.markIncomplete') : t('activities.markComplete')}
                 >
                   {act.completed ? '✓' : '○'}
                 </button>

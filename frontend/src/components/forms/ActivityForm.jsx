@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { createActivity, updateActivity, getUsers } from '../../api/client'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import Modal from '../ui/Modal'
 import styles from './ActivityForm.module.css'
 
 export default function ActivityForm({ activity, categories, onClose, onSaved }) {
   const isEdit = !!activity
+  const { t } = useTranslation()
   const [users, setUsers] = useState([])
   const [form, setForm] = useState({
     description: activity?.description ?? '',
@@ -33,41 +35,41 @@ export default function ActivityForm({ activity, categories, onClose, onSaved })
     try {
       if (isEdit) {
         await updateActivity(activity.id, payload)
-        toast.success('Activity updated')
+        toast.success(t('forms.activity.updated'))
       } else {
         await createActivity(payload)
-        toast.success('Activity created')
+        toast.success(t('forms.activity.created'))
       }
       onSaved()
     } catch {
-      toast.error('Failed to save activity')
+      toast.error(t('forms.activity.saveError'))
     }
   }
 
   return (
-    <Modal onClose={onClose} title={isEdit ? 'Edit Activity' : 'New Activity'}>
+    <Modal onClose={onClose} title={isEdit ? t('forms.activity.editTitle') : t('forms.activity.newTitle')}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.field}>
-          <label className={styles.label}>Description</label>
-          <textarea className={styles.textarea} value={form.description} onChange={(e) => set('description', e.target.value)} required rows={2} placeholder="e.g. Plant cucumbers" />
+          <label className={styles.label}>{t('forms.activity.description')}</label>
+          <textarea className={styles.textarea} value={form.description} onChange={(e) => set('description', e.target.value)} required rows={2} placeholder={t('forms.activity.descriptionPlaceholder')} />
         </div>
 
         <div className={styles.row}>
           <div className={styles.field}>
-            <label className={styles.label}>Category</label>
+            <label className={styles.label}>{t('forms.activity.category')}</label>
             <select className={styles.select} value={form.category_id} onChange={(e) => set('category_id', e.target.value)}>
-              <option value="">None</option>
+              <option value="">{t('forms.activity.categoryNone')}</option>
               {categories.map((c) => <option key={c.id} value={c.id}>{c.emoji} {c.name}</option>)}
             </select>
           </div>
           <div className={styles.field}>
-            <label className={styles.label}>Priority (1–10)</label>
+            <label className={styles.label}>{t('forms.activity.priority')}</label>
             <input type="number" min={1} max={10} className={styles.input} value={form.priority} onChange={(e) => set('priority', e.target.value)} />
           </div>
         </div>
 
         <div className={styles.field}>
-          <label className={styles.label}>Color</label>
+          <label className={styles.label}>{t('forms.task.color')}</label>
           <div className={styles.colorRow}>
             <input type="color" className={styles.colorPicker} value={form.color} onChange={(e) => set('color', e.target.value)} />
             <span className={styles.colorVal}>{form.color}</span>
@@ -76,7 +78,7 @@ export default function ActivityForm({ activity, categories, onClose, onSaved })
 
         {users.length > 0 && (
           <div className={styles.field}>
-            <label className={styles.label}>Assign to</label>
+            <label className={styles.label}>{t('forms.activity.assignTo')}</label>
             <div className={styles.userList}>
               {users.map((u) => (
                 <label key={u.id} className={styles.userChip}>
@@ -89,8 +91,8 @@ export default function ActivityForm({ activity, categories, onClose, onSaved })
         )}
 
         <div className={styles.actions}>
-          <button type="button" className={styles.cancelBtn} onClick={onClose}>Cancel</button>
-          <button type="submit" className={styles.saveBtn}>{isEdit ? 'Save Changes' : 'Create Activity'}</button>
+          <button type="button" className={styles.cancelBtn} onClick={onClose}>{t('forms.cancel')}</button>
+          <button type="submit" className={styles.saveBtn}>{isEdit ? t('forms.saveChanges') : t('forms.activity.create')}</button>
         </div>
       </form>
     </Modal>

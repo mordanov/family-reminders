@@ -3,9 +3,11 @@ import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import allLocales from '@fullcalendar/core/locales-all'
 import { getWeekTasks, getCategories } from '../api/client'
-import { startOfWeek, endOfWeek, addWeeks } from 'date-fns'
+import { startOfWeek, endOfWeek } from 'date-fns'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import TaskForm from '../components/forms/TaskForm'
 import styles from './WeeklyPage.module.css'
 
@@ -15,12 +17,13 @@ export default function WeeklyPage() {
   const [showForm, setShowForm] = useState(false)
   const [initialDate, setInitialDate] = useState(null)
   const calRef = useRef(null)
+  const { t, i18n } = useTranslation()
 
   const loadWeek = async (start, end) => {
     try {
-      const [t, c] = await Promise.all([getWeekTasks(start, end), getCategories()])
+      const [tk, c] = await Promise.all([getWeekTasks(start, end), getCategories()])
       setCategories(c.data)
-      const evts = t.data.map((task) => ({
+      const evts = tk.data.map((task) => ({
         id: String(task.id),
         title: task.description,
         start: task.start_datetime,
@@ -31,7 +34,7 @@ export default function WeeklyPage() {
       }))
       setEvents(evts)
     } catch {
-      toast.error('Failed to load schedule')
+      toast.error(t('weekly.error'))
     }
   }
 
@@ -65,8 +68,8 @@ export default function WeeklyPage() {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Weekly Schedule</h1>
-        <button className={styles.addBtn} onClick={() => { setInitialDate(null); setShowForm(true) }}>+ Add Task</button>
+        <h1 className={styles.title}>{t('weekly.title')}</h1>
+        <button className={styles.addBtn} onClick={() => { setInitialDate(null); setShowForm(true) }}>{t('weekly.add')}</button>
       </div>
 
       <div className={styles.calWrap}>
@@ -74,6 +77,8 @@ export default function WeeklyPage() {
           ref={calRef}
           plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
           initialView="timeGridWeek"
+          locales={allLocales}
+          locale={i18n.language}
           headerToolbar={{
             left: 'prev,next today',
             center: 'title',

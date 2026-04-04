@@ -1,18 +1,24 @@
+import { useTranslation } from 'react-i18next'
 import styles from './RecurringEditDialog.module.css'
 
 export default function RecurringEditDialog({ action, onConfirm, onCancel }) {
+  const { t } = useTranslation()
+  const actionText = action === 'delete' ? t('forms.recurring.delete') : t('forms.recurring.edit')
+
   return (
     <div className={styles.overlay}>
       <div className={styles.dialog}>
-        <h3 className={styles.title}>{action === 'delete' ? 'Delete Recurring Task' : 'Edit Recurring Task'}</h3>
-        <p className={styles.body}>This is a recurring task. What would you like to {action}?</p>
+        <h3 className={styles.title}>
+          {action === 'delete' ? t('forms.recurring.deleteTitle') : t('forms.recurring.editTitle')}
+        </h3>
+        <p className={styles.body}>{t('forms.recurring.body', { action: actionText })}</p>
         <div className={styles.actions}>
-          <button className={styles.cancelBtn} onClick={onCancel}>Cancel</button>
+          <button className={styles.cancelBtn} onClick={onCancel}>{t('forms.cancel')}</button>
           <button className={styles.scopeBtn} onClick={() => onConfirm('this')}>
-            This occurrence only
+            {t('forms.recurring.thisOnly')}
           </button>
           <button className={`${styles.scopeBtn} ${styles.future}`} onClick={() => onConfirm('future')}>
-            This & future occurrences
+            {t('forms.recurring.thisFuture')}
           </button>
         </div>
       </div>

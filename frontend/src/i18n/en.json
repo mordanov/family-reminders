@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "tasks": "Tasks",
+    "goals": "Life Goals",
+    "weekly": "Weekly",
+    "archive": "Archive",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "login": {
+    "subtitle": "Sign in to continue",
+    "username": "Username",
+    "usernamePlaceholder": "user1",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "error": "Invalid credentials",
+    "hint": "Default: user1 / user1_change_me"
+  },
+  "tasks": {
+    "title": "Tasks",
+    "loading": "Loading…",
+    "error": "Failed to load data"
+  },
+  "todayTasks": {
+    "title": "Today's Tasks",
+    "add": "+ Add Task",
+    "empty": "No tasks for today. Enjoy your day!",
+    "recurring": "recurring",
+    "deleteError": "Failed to delete task",
+    "deleted": "Task deleted"
+  },
+  "reminders": {
+    "title": "Reminders"
+  },
+  "activities": {
+    "title": "Activities",
+    "add": "+ Add Activity",
+    "empty": "No activities yet.",
+    "markComplete": "Mark complete",
+    "markIncomplete": "Mark incomplete",
+    "updateError": "Failed to update activity",
+    "deleteError": "Failed to delete activity",
+    "deleted": "Activity deleted"
+  },
+  "goals": {
+    "title": "Life Goals",
+    "subtitle": "Long-term aspirations powered by activities",
+    "add": "+ New Goal",
+    "empty": "No life goals yet. Start by creating one.",
+    "loading": "Loading…",
+    "loadError": "Failed to load goals",
+    "deleteError": "Failed to delete goal",
+    "deleted": "Goal deleted",
+    "progress": "Progress",
+    "activity": "activity",
+    "activities": "activities",
+    "copyToUser": "Copy to user",
+    "selectUser": "Select user…",
+    "copy": "Copy",
+    "copyError": "Failed to copy goal",
+    "copied": "Goal copied!",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "weekly": {
+    "title": "Weekly Schedule",
+    "add": "+ Add Task",
+    "error": "Failed to load schedule"
+  },
+  "archive": {
+    "title": "Archive",
+    "tasksTab": "Tasks",
+    "activitiesTab": "Activities",
+    "startDate": "From",
+    "endDate": "To",
+    "category": "Category",
+    "allCategories": "All categories",
+    "apply": "Apply",
+    "loadError": "Failed to load archive",
+    "noTasks": "No tasks for the selected period.",
+    "noActivities": "No completed activities.",
+    "time": "Time",
+    "description": "Description",
+    "completedActivities": "Completed activities"
+  },
+  "settings": {
+    "title": "Settings",
+    "timezone": "Timezone",
+    "save": "Save",
+    "timezoneUpdated": "Timezone updated",
+    "timezoneError": "Failed to update timezone",
+    "categories": "Categories",
+    "categoryNamePlaceholder": "Category name",
+    "emojiPlaceholder": "emoji",
+    "add": "Add",
+    "categoryCreated": "Category created",
+    "categoryUpdated": "Category updated",
+    "categoryDeleted": "Category deleted",
+    "createError": "Failed to create category",
+    "updateError": "Failed to update",
+    "deleteError": "Failed to delete",
+    "language": "Language",
+    "theme": "Theme",
+    "themeDark": "Dark",
+    "themeLight": "Light",
+    "themeNavy": "Navy",
+    "themeWarm": "Warm"
+  },
+  "forms": {
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "task": {
+      "editTitle": "Edit Task",
+      "newTitle": "New Task",
+      "description": "Description",
+      "descriptionPlaceholder": "What needs to happen?",
+      "start": "Start",
+      "end": "End",
+      "category": "Category",
+      "categoryNone": "None",
+      "color": "Color",
+      "remindAtStart": "Remind at start time",
+      "recurring": "Recurring task",
+      "frequency": "Frequency",
+      "frequencyDaily": "daily",
+      "frequencyWeekly": "weekly",
+      "frequencyMonthly": "monthly",
+      "frequencyYearly": "yearly",
+      "everyN": "Every N",
+      "endDate": "End date (blank = 1 year)",
+      "create": "Create Task",
+      "saveError": "Failed to save task",
+      "created": "Task created",
+      "updated": "Task updated"
+    },
+    "activity": {
+      "editTitle": "Edit Activity",
+      "newTitle": "New Activity",
+      "description": "Description",
+      "descriptionPlaceholder": "e.g. Plant cucumbers",
+      "category": "Category",
+      "categoryNone": "None",
+      "priority": "Priority (1–10)",
+      "color": "Color",
+      "assignTo": "Assign to",
+      "create": "Create Activity",
+      "saveError": "Failed to save activity",
+      "created": "Activity created",
+      "updated": "Activity updated"
+    },
+    "goal": {
+      "editTitle": "Edit Life Goal",
+      "newTitle": "New Life Goal",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe your life goal…",
+      "linkActivities": "Link Activities",
+      "linkActivitiesCount": "Link Activities ({{count}} selected)",
+      "noActivities": "No activities available. Create some in the Tasks tab first.",
+      "done": "done",
+      "create": "Create Goal",
+      "saveError": "Failed to save goal",
+      "created": "Goal created",
+      "updated": "Goal updated"
+    },
+    "recurring": {
+      "deleteTitle": "Delete Recurring Task",
+      "editTitle": "Edit Recurring Task",
+      "body": "This is a recurring task. What would you like to {{action}}?",
+      "delete": "delete",
+      "edit": "edit",
+      "thisOnly": "This occurrence only",
+      "thisFuture": "This & future occurrences"
+    }
+  },
+  "common": {
+    "loading": "Loading…"
+  }
+}
