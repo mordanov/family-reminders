@@ -43,3 +43,9 @@
 .actionBtn { background: none; color: var(--text-muted); font-size: 13px; padding: 4px 6px; border-radius: 4px; transition: background var(--transition), color var(--transition); }
 .actionBtn:hover { background: var(--bg-card); color: var(--text); }
 .actionBtn.danger:hover { color: var(--danger); }
+
+@media (max-width: 640px) {
+  .block { padding: 14px; }
+  .card { padding: 10px 12px; }
+  .actions { opacity: 1; }
+}

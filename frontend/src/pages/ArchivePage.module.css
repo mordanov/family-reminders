@@ -29,3 +29,10 @@
 
 .actRow { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg-elevated); border-radius: var(--radius-sm); border-left: 3px solid var(--accent); }
 .checkIcon { color: var(--success); font-size: 14px; flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .root { padding: 16px; }
+  .filters { gap: 8px; padding: 12px; }
+  .taskRow, .actRow { flex-wrap: wrap; gap: 6px; }
+  .time { width: 100%; }
+}

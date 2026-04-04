@@ -39,3 +39,7 @@
 .copyBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 7px 12px; font-size: 12px; font-weight: 500; transition: background var(--transition); }
 .copyBtn:hover:not(:disabled) { background: var(--accent-hover); }
 .copyBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media (max-width: 640px) {
+  .cardActions { opacity: 1; }
+}

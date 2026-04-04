@@ -56,3 +56,9 @@
 }
 .actionBtn:hover { background: var(--bg-card); color: var(--text); }
 .actionBtn.danger:hover { color: var(--danger); }
+
+@media (max-width: 640px) {
+  .block { padding: 14px; }
+  .taskCard { padding: 10px 12px; gap: 10px; }
+  .taskActions { opacity: 1; }
+}

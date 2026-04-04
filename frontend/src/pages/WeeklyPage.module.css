@@ -1,4 +1,9 @@
 .root { padding: 28px 32px; height: 100vh; display: flex; flex-direction: column; }
+@media (max-width: 640px) {
+  .root { padding: 14px; height: auto; min-height: 100vh; }
+  .header { margin-bottom: 12px; }
+  .calWrap { padding: 8px; overflow-x: auto; min-height: 500px; }
+}
 .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-shrink: 0; }
 .title { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; }
 .addBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 8px 18px; font-size: 13px; font-weight: 500; transition: background var(--transition); }

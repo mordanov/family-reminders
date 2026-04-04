@@ -18,6 +18,7 @@ export default function WeeklyPage() {
   const [initialDate, setInitialDate] = useState(null)
   const calRef = useRef(null)
   const { t, i18n } = useTranslation()
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640
 
   const loadWeek = async (start, end) => {
     try {
@@ -76,7 +77,7 @@ export default function WeeklyPage() {
         <FullCalendar
           ref={calRef}
           plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
-          initialView="timeGridWeek"
+          initialView={isMobile ? 'timeGridDay' : 'timeGridWeek'}
           locales={allLocales}
           locale={i18n.language}
           headerToolbar={{

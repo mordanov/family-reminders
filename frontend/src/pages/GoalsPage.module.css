@@ -8,3 +8,8 @@
 .empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 80px 0; color: var(--text-muted); font-size: 14px; }
 .emptyIcon { font-size: 48px; opacity: 0.3; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+@media (max-width: 640px) {
+  .root { padding: 16px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 16px; }
+  .grid { grid-template-columns: 1fr; }
+}

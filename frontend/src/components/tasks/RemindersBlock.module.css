@@ -16,3 +16,7 @@
 .time { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
 .emoji { font-size: 14px; flex-shrink: 0; }
 .desc { font-size: 13px; flex: 1; }
+
+@media (max-width: 640px) {
+  .block { padding: 14px; }
+}

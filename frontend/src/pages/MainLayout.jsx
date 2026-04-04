@@ -47,7 +47,7 @@ export default function MainLayout() {
         <div className={styles.bottom}>
           <button className={styles.settingsBtn} onClick={() => setShowSettings(true)}>
             <span>⚙</span>
-            <span>{t('nav.settings')}</span>
+            <span className={styles.settingsBtnLabel}>{t('nav.settings')}</span>
           </button>
           <div className={styles.userRow}>
             <div className={styles.avatar}>{user?.username?.[0]?.toUpperCase()}</div>
