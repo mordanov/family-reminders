@@ -1,55 +1,31 @@
-version: "3.9"
-
 services:
-  db:
-    image: postgres:16-alpine
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: reminders
-      POSTGRES_USER: reminders
-      POSTGRES_PASSWORD: reminders
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U reminders"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    ports:
-      - "5432:5432"
-
-  backend:
+  reminders-backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql+asyncpg://reminders:reminders@db:5432/reminders
-      SECRET_KEY: ${SECRET_KEY:-super-secret-change-in-production}
-      SMTP_HOST: ${SMTP_HOST:-smtp.gmail.com}
-      SMTP_PORT: ${SMTP_PORT:-587}
-      SMTP_USER: ${SMTP_USER:-}
-      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
-      SMTP_FROM: ${SMTP_FROM:-reminders@app.local}
-    volumes:
-      - ./backend:/app
-    depends_on:
-      db:
-        condition: service_healthy
-    ports:
-      - "8000:8000"
+      DATABASE_URL: postgresql+asyncpg://${REMINDERS_POSTGRES_USER:-reminders_user}:${REMINDERS_POSTGRES_PASSWORD:-change-me-reminders-db}@recipes-db:5432/${REMINDERS_POSTGRES_DB:-reminders}
+      SECRET_KEY: ${REMINDERS_SECRET_KEY:-change-me-reminders-secret}
+      SMTP_HOST: ${REMINDERS_SMTP_HOST:-smtp.gmail.com}
+      SMTP_PORT: ${REMINDERS_SMTP_PORT:-587}
+      SMTP_USER: ${REMINDERS_SMTP_USER:-}
+      SMTP_PASSWORD: ${REMINDERS_SMTP_PASSWORD:-}
+      SMTP_FROM: ${REMINDERS_SMTP_FROM:-reminders@app.local}
+      REMINDER_CHECK_INTERVAL: ${REMINDERS_CHECK_INTERVAL:-60}
+      DEFAULT_USER1_USERNAME: ${REMINDERS_DEFAULT_USER1_USERNAME:-user1}
+      DEFAULT_USER1_EMAIL: ${REMINDERS_DEFAULT_USER1_EMAIL:-user1@family.local}
+      DEFAULT_USER1_PASSWORD: ${REMINDERS_DEFAULT_USER1_PASSWORD:-change-me-reminders-user1-password}
+      DEFAULT_USER2_USERNAME: ${REMINDERS_DEFAULT_USER2_USERNAME:-user2}
+      DEFAULT_USER2_EMAIL: ${REMINDERS_DEFAULT_USER2_EMAIL:-user2@family.local}
+      DEFAULT_USER2_PASSWORD: ${REMINDERS_DEFAULT_USER2_PASSWORD:-change-me-reminders-user2-password}
+    expose:
+      - "8000"
     command: >
-      sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+      sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
 
-  frontend:
+  reminders-frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
     restart: unless-stopped
-    depends_on:
-      - backend
-    ports:
-      - "3000:80"
-
-volumes:
-  postgres_data:
+    expose:
+      - "80"

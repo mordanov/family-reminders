@@ -5,6 +5,7 @@ Revises: 0001
 Create Date: 2024-01-01 00:01:00.000000
 
 """
+import os
 from typing import Sequence, Union
 from alembic import op
 import sqlalchemy as sa
@@ -21,7 +22,14 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def upgrade() -> None:
     conn = op.get_bind()
 
-    # Insert default users
+    # Insert default users from environment variables
+    user1_username = os.environ.get("DEFAULT_USER1_USERNAME", "user1")
+    user1_email = os.environ.get("DEFAULT_USER1_EMAIL", "user1@example.com")
+    user1_password = os.environ.get("DEFAULT_USER1_PASSWORD", "user1_change_me")
+    user2_username = os.environ.get("DEFAULT_USER2_USERNAME", "user2")
+    user2_email = os.environ.get("DEFAULT_USER2_EMAIL", "user2@example.com")
+    user2_password = os.environ.get("DEFAULT_USER2_PASSWORD", "user2_change_me")
+
     users_table = sa.table(
         "users",
         sa.column("username", sa.String),
@@ -32,15 +40,15 @@ def upgrade() -> None:
     result = conn.execute(
         users_table.insert().returning(sa.literal_column("id")).values([
             {
-                "username": "user1",
-                "email": "user1@example.com",
-                "hashed_password": pwd_context.hash("user1_change_me"),
+                "username": user1_username,
+                "email": user1_email,
+                "hashed_password": pwd_context.hash(user1_password),
                 "is_active": True,
             },
             {
-                "username": "user2",
-                "email": "user2@example.com",
-                "hashed_password": pwd_context.hash("user2_change_me"),
+                "username": user2_username,
+                "email": user2_email,
+                "hashed_password": pwd_context.hash(user2_password),
                 "is_active": True,
             },
         ])
@@ -75,6 +83,8 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     conn = op.get_bind()
-    conn.execute(sa.text("DELETE FROM user_settings WHERE user_id IN (SELECT id FROM users WHERE username IN ('user1','user2'))"))
-    conn.execute(sa.text("DELETE FROM users WHERE username IN ('user1', 'user2')"))
+    user1_username = os.environ.get("DEFAULT_USER1_USERNAME", "user1")
+    user2_username = os.environ.get("DEFAULT_USER2_USERNAME", "user2")
+    conn.execute(sa.text(f"DELETE FROM user_settings WHERE user_id IN (SELECT id FROM users WHERE username IN ('{user1_username}','{user2_username}'))"))
+    conn.execute(sa.text(f"DELETE FROM users WHERE username IN ('{user1_username}', '{user2_username}')"))
     conn.execute(sa.text("DELETE FROM categories WHERE name IN ('Vera','Taisia','Travel','Work','Health')"))

@@ -1,0 +1,58 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: reminders
+      POSTGRES_USER: reminders
+      POSTGRES_PASSWORD: reminders
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U reminders"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+
+  reminders-backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://reminders:reminders@db:5432/reminders
+      SECRET_KEY: dev-secret-key-not-for-production
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: 587
+      SMTP_USER: ""
+      SMTP_PASSWORD: ""
+      SMTP_FROM: reminders@app.local
+      REMINDER_CHECK_INTERVAL: 60
+      DEFAULT_USER1_USERNAME: user1
+      DEFAULT_USER1_EMAIL: user1@example.com
+      DEFAULT_USER1_PASSWORD: user1_change_me
+      DEFAULT_USER2_USERNAME: user2
+      DEFAULT_USER2_EMAIL: user2@example.com
+      DEFAULT_USER2_PASSWORD: user2_change_me
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+  reminders-frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - reminders-backend
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres_data:
