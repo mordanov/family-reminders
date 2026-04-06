@@ -5,7 +5,15 @@
   .blocks { gap: 14px; }
 }
 .loading { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--text-muted); }
-.header { display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px; }
+.header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
+.dateRow { display: flex; align-items: center; gap: 10px; }
+.dateCenter { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; flex: 1; }
 .date { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+.navBtn { background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 22px; line-height: 1; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; }
+.navBtn:hover { background: var(--bg-elevated); color: var(--text); }
+.todayBtn { background: none; border: none; color: var(--accent); font-size: 12px; cursor: pointer; padding: 0; }
+.todayBtn:hover { text-decoration: underline; }
+.datePickerRow { display: flex; }
+.datePicker { background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 4px 8px; font-size: 13px; font-family: var(--font); cursor: pointer; }
 .title { font-size: 16px; font-weight: 500; color: var(--text-muted); }
 .blocks { display: flex; flex-direction: column; gap: 24px; }

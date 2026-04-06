@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
+import { format, addDays, isToday } from 'date-fns'
 import { getTodayTasks, getActivities, getReminders, getCategories } from '../api/client'
 import TodayTasksBlock from '../components/tasks/TodayTasksBlock'
 import ActivitiesBlock from '../components/activities/ActivitiesBlock'
@@ -13,12 +14,22 @@ export default function TasksPage() {
   const [reminders, setReminders] = useState([])
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
+  const [currentDate, setCurrentDate] = useState(new Date())
   const { t, i18n } = useTranslation()
 
-  const refresh = async () => {
+  const locale = i18n.language === 'ru' ? 'ru-RU' : 'en-US'
+
+  const refresh = async (date = currentDate) => {
     try {
+      const dateStr = format(date, 'yyyy-MM-dd')
+      const todayStr = format(new Date(), 'yyyy-MM-dd')
+      const isCurrentDay = dateStr === todayStr
+
       const [tk, a, r, c] = await Promise.all([
-        getTodayTasks(), getActivities(), getReminders(), getCategories()
+        getTodayTasks(isCurrentDay ? undefined : dateStr),
+        getActivities(),
+        getReminders(),
+        getCategories(),
       ])
       setTasks(tk.data)
       setActivities(a.data)
@@ -32,8 +43,10 @@ export default function TasksPage() {
   }
 
   useEffect(() => {
-    refresh()
-    // Poll reminders every 60 seconds
+    refresh(currentDate)
+  }, [currentDate])
+
+  useEffect(() => {
     const interval = setInterval(async () => {
       try {
         const r = await getReminders()
@@ -43,21 +56,43 @@ export default function TasksPage() {
     return () => clearInterval(interval)
   }, [])
 
-  if (loading) return <div className={styles.loading}>{t('common.loading')}</div>
+  const goDay = (delta) => setCurrentDate((d) => addDays(d, delta))
+  const goToday = () => setCurrentDate(new Date())
 
-  const locale = i18n.language === 'ru' ? 'ru-RU' : 'en-US'
+  if (loading) return <div className={styles.loading}>{t('common.loading')}</div>
 
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <div className={styles.date}>{new Date().toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric' })}</div>
+        <div className={styles.dateRow}>
+          <button className={styles.navBtn} onClick={() => goDay(-1)}>‹</button>
+          <div className={styles.dateCenter}>
+            <div className={styles.date}>
+              {currentDate.toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric' })}
+            </div>
+            {!isToday(currentDate) && (
+              <button className={styles.todayBtn} onClick={goToday}>
+                {locale === 'ru-RU' ? 'Сегодня' : 'Today'}
+              </button>
+            )}
+          </div>
+          <button className={styles.navBtn} onClick={() => goDay(1)}>›</button>
+        </div>
+        <div className={styles.datePickerRow}>
+          <input
+            type="date"
+            className={styles.datePicker}
+            value={format(currentDate, 'yyyy-MM-dd')}
+            onChange={(e) => e.target.value && setCurrentDate(new Date(e.target.value + 'T12:00:00'))}
+          />
+        </div>
         <h1 className={styles.title}>{t('tasks.title')}</h1>
       </div>
 
       <div className={styles.blocks}>
         <RemindersBlock reminders={reminders} categories={categories} />
-        <ActivitiesBlock activities={activities} categories={categories} onRefresh={refresh} />
-        <TodayTasksBlock tasks={tasks} categories={categories} onRefresh={refresh} />
+        <ActivitiesBlock activities={activities} categories={categories} onRefresh={() => refresh(currentDate)} />
+        <TodayTasksBlock tasks={tasks} categories={categories} onRefresh={() => refresh(currentDate)} />
       </div>
     </div>
   )

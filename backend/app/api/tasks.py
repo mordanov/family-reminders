@@ -13,6 +13,7 @@ router = APIRouter(prefix="/tasks", tags=["tasks"])
 
 @router.get("/today", response_model=List[TaskOut])
 async def today_tasks(
+    target_date: Optional[date] = Query(None),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -20,7 +21,7 @@ async def today_tasks(
     if current_user.settings:
         tz = current_user.settings.timezone
     svc = TaskService(db)
-    return await svc.get_today(current_user.id, tz)
+    return await svc.get_today(current_user.id, tz, target_date)
 
 
 @router.get("/week", response_model=List[TaskOut])

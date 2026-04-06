@@ -14,17 +14,24 @@ const toDatetimeLocal = (d) => {
 
 const FREQS = ['daily', 'weekly', 'monthly', 'yearly']
 
-export default function TaskForm({ task, categories, onClose, onSaved, mode }) {
+export default function TaskForm({ task, initialDate, categories, onClose, onSaved, mode }) {
   const isEdit = !!task
   const { t } = useTranslation()
   const ns = mode === 'habit' ? 'forms.habit' : 'forms.task'
   const [showRecurringDialog, setShowRecurringDialog] = useState(false)
   const [pendingData, setPendingData] = useState(null)
 
+  const defaultStart = initialDate
+    ? toDatetimeLocal(initialDate)
+    : toDatetimeLocal(null)
+  const defaultEnd = initialDate
+    ? toDatetimeLocal(addHours(new Date(initialDate), 1))
+    : toDatetimeLocal(addHours(startOfHour(new Date()), 2))
+
   const [form, setForm] = useState({
     description: task?.description ?? '',
-    start_datetime: toDatetimeLocal(task?.start_datetime),
-    end_datetime: toDatetimeLocal(task?.end_datetime ?? (task ? null : addHours(startOfHour(new Date()), 2))),
+    start_datetime: task ? toDatetimeLocal(task.start_datetime) : defaultStart,
+    end_datetime: task ? toDatetimeLocal(task.end_datetime) : defaultEnd,
     remind_at_start: task?.remind_at_start ?? false,
     category_id: task?.category_id ?? '',
     color: task?.color ?? '#7c6aff',

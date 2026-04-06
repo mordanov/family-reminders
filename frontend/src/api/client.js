@@ -41,7 +41,7 @@ export const updateCategory = (id, data) => api.put(`/categories/${id}`, data)
 export const deleteCategory = (id) => api.delete(`/categories/${id}`)
 
 // Tasks
-export const getTodayTasks = () => api.get('/tasks/today')
+export const getTodayTasks = (date) => api.get('/tasks/today', date ? { params: { target_date: date } } : {})
 export const getWeekTasks = (start, end) => api.get('/tasks/week', { params: { start: start.toISOString(), end: end.toISOString() } })
 export const getReminders = () => api.get('/tasks/reminders')
 export const createTask = (data) => api.post('/tasks', data)

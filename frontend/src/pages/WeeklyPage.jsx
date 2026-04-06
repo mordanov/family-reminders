@@ -16,6 +16,7 @@ export default function WeeklyPage() {
   const [categories, setCategories] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [initialDate, setInitialDate] = useState(null)
+  const [editTask, setEditTask] = useState(null)
   const calRef = useRef(null)
   const { t, i18n } = useTranslation()
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640
@@ -49,8 +50,18 @@ export default function WeeklyPage() {
   }
 
   const handleDateClick = (info) => {
+    setEditTask(null)
     setInitialDate(info.dateStr)
     setShowForm(true)
+  }
+
+  const handleEventClick = (info) => {
+    const { task } = info.event.extendedProps
+    if (task) {
+      setEditTask(task)
+      setInitialDate(null)
+      setShowForm(true)
+    }
   }
 
   const renderEventContent = (eventInfo) => {
@@ -88,6 +99,7 @@ export default function WeeklyPage() {
           events={events}
           datesSet={handleDatesSet}
           dateClick={handleDateClick}
+          eventClick={handleEventClick}
           eventContent={renderEventContent}
           firstDay={1}
           slotMinTime="06:00:00"
@@ -101,11 +113,13 @@ export default function WeeklyPage() {
 
       {showForm && (
         <TaskForm
-          task={null}
+          task={editTask}
+          initialDate={initialDate}
           categories={categories}
-          onClose={() => setShowForm(false)}
+          onClose={() => { setShowForm(false); setEditTask(null) }}
           onSaved={() => {
             setShowForm(false)
+            setEditTask(null)
             const api = calRef.current?.getApi()
             if (api) {
               const start = api.view.activeStart

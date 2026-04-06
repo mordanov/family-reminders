@@ -32,10 +32,13 @@ class TaskService:
     def __init__(self, db: AsyncSession):
         self.repo = TaskRepository(db)
 
-    async def get_today(self, user_id: int, user_tz: str) -> List[TaskOut]:
+    async def get_today(self, user_id: int, user_tz: str, target_date=None) -> List[TaskOut]:
         tz = pytz.timezone(user_tz)
-        now_local = datetime.now(tz)
-        now_utc = now_local.astimezone(pytz.utc)
+        if target_date:
+            local_dt = tz.localize(datetime(target_date.year, target_date.month, target_date.day, 12, 0, 0))
+        else:
+            local_dt = datetime.now(tz)
+        now_utc = local_dt.astimezone(pytz.utc)
         tasks = await self.repo.get_today_for_user(user_id, now_utc)
         return [_serialize(t) for t in tasks]
 
