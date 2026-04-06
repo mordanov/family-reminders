@@ -80,6 +80,7 @@ export default function TodayTasksBlock({ tasks, categories, onRefresh }) {
           categories={categories}
           onClose={() => setShowForm(false)}
           onSaved={() => { setShowForm(false); onRefresh() }}
+          mode="habit"
         />
       )}
 

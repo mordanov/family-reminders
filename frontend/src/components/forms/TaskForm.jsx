@@ -14,9 +14,10 @@ const toDatetimeLocal = (d) => {
 
 const FREQS = ['daily', 'weekly', 'monthly', 'yearly']
 
-export default function TaskForm({ task, categories, onClose, onSaved }) {
+export default function TaskForm({ task, categories, onClose, onSaved, mode }) {
   const isEdit = !!task
   const { t } = useTranslation()
+  const ns = mode === 'habit' ? 'forms.habit' : 'forms.task'
   const [showRecurringDialog, setShowRecurringDialog] = useState(false)
   const [pendingData, setPendingData] = useState(null)
 
@@ -72,20 +73,20 @@ export default function TaskForm({ task, categories, onClose, onSaved }) {
     try {
       if (isEdit) {
         await updateTask(task.id, payload, scope)
-        toast.success(t('forms.task.updated'))
+        toast.success(t(`${ns}.updated`))
       } else {
         await createTask(payload)
-        toast.success(t('forms.task.created'))
+        toast.success(t(`${ns}.created`))
       }
       onSaved()
     } catch {
-      toast.error(t('forms.task.saveError'))
+      toast.error(t(`${ns}.saveError`))
     }
   }
 
   return (
     <>
-      <Modal onClose={onClose} title={isEdit ? t('forms.task.editTitle') : t('forms.task.newTitle')}>
+      <Modal onClose={onClose} title={isEdit ? t(`${ns}.editTitle`) : t(`${ns}.newTitle`)}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
             <label className={styles.label}>{t('forms.task.description')}</label>
@@ -163,7 +164,7 @@ export default function TaskForm({ task, categories, onClose, onSaved }) {
 
           <div className={styles.actions}>
             <button type="button" className={styles.cancelBtn} onClick={onClose}>{t('forms.cancel')}</button>
-            <button type="submit" className={styles.saveBtn}>{isEdit ? t('forms.saveChanges') : t('forms.task.create')}</button>
+            <button type="submit" className={styles.saveBtn}>{isEdit ? t('forms.saveChanges') : t(`${ns}.create`)}</button>
           </div>
         </form>
       </Modal>

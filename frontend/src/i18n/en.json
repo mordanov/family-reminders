@@ -24,24 +24,24 @@
   },
   "todayTasks": {
     "title": "Habits",
-    "add": "+ Add Task",
-    "empty": "No tasks for today. Enjoy your day!",
+    "add": "+ Add Habit",
+    "empty": "No habits for today. Enjoy your day!",
     "recurring": "recurring",
-    "deleteError": "Failed to delete task",
-    "deleted": "Task deleted"
+    "deleteError": "Failed to delete habit",
+    "deleted": "Habit deleted"
   },
   "reminders": {
     "title": "Reminders"
   },
   "activities": {
     "title": "Day Tasks",
-    "add": "+ Add Activity",
-    "empty": "No activities yet.",
+    "add": "+ Add Task",
+    "empty": "No tasks yet.",
     "markComplete": "Mark complete",
     "markIncomplete": "Mark incomplete",
-    "updateError": "Failed to update activity",
-    "deleteError": "Failed to delete activity",
-    "deleted": "Activity deleted"
+    "updateError": "Failed to update task",
+    "deleteError": "Failed to delete task",
+    "deleted": "Task deleted"
   },
   "goals": {
     "title": "Life Goals",
@@ -135,19 +135,26 @@
       "updated": "Task updated"
     },
     "activity": {
-      "editTitle": "Edit Activity",
-      "newTitle": "New Activity",
+      "editTitle": "Edit Day Task",
+      "newTitle": "New Day Task",
       "description": "Description",
       "descriptionPlaceholder": "e.g. Plant cucumbers",
       "category": "Category",
       "categoryNone": "None",
       "priority": "Priority (1–10)",
-      "color": "Color",
       "assignTo": "Assign to",
-      "create": "Create Activity",
-      "saveError": "Failed to save activity",
-      "created": "Activity created",
-      "updated": "Activity updated"
+      "create": "Create Task",
+      "saveError": "Failed to save task",
+      "created": "Task created",
+      "updated": "Task updated"
+    },
+    "habit": {
+      "editTitle": "Edit Habit",
+      "newTitle": "New Habit",
+      "create": "Create Habit",
+      "saveError": "Failed to save habit",
+      "created": "Habit created",
+      "updated": "Habit updated"
     },
     "goal": {
       "editTitle": "Edit Life Goal",
