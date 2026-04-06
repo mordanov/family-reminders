@@ -149,7 +149,7 @@ export default function NutritionPage() {
       toast.error(t('nutrition.saveError'))
     }
   }
-
+x
   const handleNewVersion = async () => {
     try {
       const r = await newShoppingListVersion()
