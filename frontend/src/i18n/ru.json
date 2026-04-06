@@ -2,6 +2,7 @@
   "nav": {
     "tasks": "Задачи",
     "nutrition": "Питание",
+    "payments": "Платежи",
     "goals": "Цели",
     "weekly": "Календарь",
     "archive": "Архив",
@@ -179,6 +180,37 @@
       "edit": "редактировать",
       "thisOnly": "Только это событие",
       "thisFuture": "Это и следующие события"
+    }
+  },
+  "payments": {
+    "title": "Регулярные платежи",
+    "add": "+ Добавить платёж",
+    "empty": "Платежей пока нет.",
+    "date": "Дата платежа",
+    "description": "Описание",
+    "currency": "Валюта",
+    "amount": "Сумма",
+    "lessonsCount": "Уроков",
+    "lessonsPerWeek": "Уроков/нед.",
+    "endDate": "Дата окончания",
+    "copy": "Копировать",
+    "deleteError": "Не удалось удалить платёж",
+    "deleted": "Платёж удалён",
+    "loadError": "Не удалось загрузить платежи",
+    "forms": {
+      "editTitle": "Редактировать платёж",
+      "newTitle": "Новый платёж",
+      "paidAt": "Дата и время",
+      "description": "Описание",
+      "descriptionPlaceholder": "напр. Уроки английского",
+      "currency": "Валюта",
+      "amount": "Сумма",
+      "lessonsCount": "Количество уроков",
+      "lessonsPerWeek": "Уроков в неделю",
+      "create": "Создать платёж",
+      "saveError": "Не удалось сохранить платёж",
+      "created": "Платёж создан",
+      "updated": "Платёж обновлён"
     }
   },
   "nutrition": {

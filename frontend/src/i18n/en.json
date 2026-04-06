@@ -2,6 +2,7 @@
   "nav": {
     "tasks": "Tasks",
     "nutrition": "Nutrition",
+    "payments": "Payments",
     "goals": "Life Goals",
     "weekly": "Calendar",
     "archive": "Archive",
@@ -179,6 +180,37 @@
       "edit": "edit",
       "thisOnly": "This occurrence only",
       "thisFuture": "This & future occurrences"
+    }
+  },
+  "payments": {
+    "title": "Regular Payments",
+    "add": "+ Add Payment",
+    "empty": "No payments yet.",
+    "date": "Payment date",
+    "description": "Description",
+    "currency": "Currency",
+    "amount": "Amount",
+    "lessonsCount": "Lessons",
+    "lessonsPerWeek": "Lessons/wk",
+    "endDate": "End date",
+    "copy": "Copy",
+    "deleteError": "Failed to delete payment",
+    "deleted": "Payment deleted",
+    "loadError": "Failed to load payments",
+    "forms": {
+      "editTitle": "Edit Payment",
+      "newTitle": "New Payment",
+      "paidAt": "Date & time",
+      "description": "Description",
+      "descriptionPlaceholder": "e.g. English lessons",
+      "currency": "Currency",
+      "amount": "Amount",
+      "lessonsCount": "Number of lessons",
+      "lessonsPerWeek": "Lessons per week",
+      "create": "Create Payment",
+      "saveError": "Failed to save payment",
+      "created": "Payment created",
+      "updated": "Payment updated"
     }
   },
   "nutrition": {

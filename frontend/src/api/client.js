@@ -65,6 +65,12 @@ export const copyGoal = (id, targetUserId) => api.post(`/goals/${id}/copy`, { ta
 export const getArchivedTasks = (params) => api.get('/tasks/archive', { params })
 export const getArchivedActivities = (params) => api.get('/activities/archive', { params })
 
+// Payments
+export const getPayments = () => api.get('/payments')
+export const createPayment = (data) => api.post('/payments', data)
+export const updatePayment = (id, data) => api.put(`/payments/${id}`, data)
+export const deletePayment = (id) => api.delete(`/payments/${id}`)
+
 // Nutrition
 export const getMealPlan = (date) => api.get('/nutrition/meal-plan', { params: { date } })
 export const upsertMealPlan = (data) => api.put('/nutrition/meal-plan', data)

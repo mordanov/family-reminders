@@ -1,6 +1,6 @@
 from sqlalchemy import (
     Column, Integer, String, Boolean, DateTime, Date, ForeignKey,
-    Text, Float, Enum as SAEnum, UniqueConstraint
+    Text, Float, Numeric, Enum as SAEnum, UniqueConstraint
 )
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -126,6 +126,18 @@ class LifeGoalActivity(Base):
 
     goal = relationship("LifeGoal", back_populates="activity_links")
     activity = relationship("Activity", back_populates="goal_links")
+
+
+class RegularPayment(Base):
+    __tablename__ = "regular_payments"
+    id = Column(Integer, primary_key=True)
+    paid_at = Column(DateTime(timezone=True), nullable=False)
+    description = Column(Text, nullable=False)
+    currency = Column(String(3), nullable=False)
+    amount = Column(Numeric(12, 2), nullable=False)
+    lessons_count = Column(Integer, nullable=False)
+    lessons_per_week = Column(Numeric(4, 1), nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 
 class MealPlan(Base):

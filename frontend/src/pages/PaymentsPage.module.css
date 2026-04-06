@@ -1,0 +1,43 @@
+.root { padding: 32px; max-width: 900px; margin: 0 auto; }
+@media (max-width: 640px) {
+  .root { padding: 16px; }
+  .header { gap: 2px; margin-bottom: 16px; }
+  .row { flex-wrap: wrap; gap: 6px; }
+  .actions { opacity: 1; }
+}
+.loading { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--text-muted); }
+.header { display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px; }
+.date { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+.title { font-size: 16px; font-weight: 500; color: var(--text-muted); }
+
+.toolbar { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+.addBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px; font-weight: 500; transition: background var(--transition); }
+.addBtn:hover { background: var(--accent-hover); }
+
+.empty { color: var(--text-muted); font-size: 13px; padding: 40px 0; text-align: center; }
+
+.list { display: flex; flex-direction: column; gap: 8px; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  transition: background var(--transition);
+}
+.row:hover { background: var(--bg-elevated); }
+.row:hover .actions { opacity: 1; }
+
+.dateCol { font-size: 12px; color: var(--text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; min-width: 90px; }
+.descCol { flex: 1; font-size: 13px; font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.amountCol { font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--text); }
+.endDateCol { font-size: 12px; white-space: nowrap; }
+.endLabel { font-size: 10px; font-weight: 500; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.4px; display: block; }
+.endValue { color: var(--text-muted); }
+
+.actions { display: flex; gap: 4px; opacity: 0; transition: opacity var(--transition); flex-shrink: 0; }
+.actionBtn { background: none; color: var(--text-muted); font-size: 12px; padding: 4px 8px; border-radius: 4px; transition: background var(--transition), color var(--transition); white-space: nowrap; }
+.actionBtn:hover { background: var(--bg-hover); color: var(--text); }
+.actionBtn.danger:hover { color: var(--danger); }
