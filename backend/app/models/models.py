@@ -1,5 +1,5 @@
 from sqlalchemy import (
-    Column, Integer, String, Boolean, DateTime, ForeignKey,
+    Column, Integer, String, Boolean, DateTime, Date, ForeignKey,
     Text, Float, Enum as SAEnum, UniqueConstraint
 )
 from sqlalchemy.orm import relationship
@@ -126,6 +126,41 @@ class LifeGoalActivity(Base):
 
     goal = relationship("LifeGoal", back_populates="activity_links")
     activity = relationship("Activity", back_populates="goal_links")
+
+
+class MealPlan(Base):
+    __tablename__ = "meal_plans"
+    id = Column(Integer, primary_key=True)
+    date = Column(Date, nullable=False)
+    meal_type = Column(String(20), nullable=False)  # 'breakfast'|'lunch'|'dinner'
+    adults_text = Column(Text, nullable=False, default='')
+    children_text = Column(Text, nullable=False, default='')
+    __table_args__ = (UniqueConstraint('date', 'meal_type'),)
+
+
+class ShoppingListVersion(Base):
+    __tablename__ = "shopping_list_versions"
+    id = Column(Integer, primary_key=True)
+    is_current = Column(Boolean, nullable=False, default=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    items = relationship(
+        "ShoppingListItem", back_populates="version",
+        cascade="all, delete-orphan",
+        order_by="ShoppingListItem.position",
+    )
+
+
+class ShoppingListItem(Base):
+    __tablename__ = "shopping_list_items"
+    id = Column(Integer, primary_key=True)
+    version_id = Column(Integer, ForeignKey("shopping_list_versions.id", ondelete="CASCADE"), nullable=False)
+    text = Column(Text, nullable=False)
+    checked = Column(Boolean, nullable=False, default=False)
+    position = Column(Integer, nullable=False, default=0)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    version = relationship("ShoppingListVersion", back_populates="items")
 
 
 class ReminderLog(Base):

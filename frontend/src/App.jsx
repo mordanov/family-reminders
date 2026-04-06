@@ -6,6 +6,7 @@ import useAuthStore from './store/authStore'
 import LoginPage from './pages/LoginPage'
 import MainLayout from './pages/MainLayout'
 import TasksPage from './pages/TasksPage'
+import NutritionPage from './pages/NutritionPage'
 import GoalsPage from './pages/GoalsPage'
 import WeeklyPage from './pages/WeeklyPage'
 import ArchivePage from './pages/ArchivePage'
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/" element={<PrivateRoute><MainLayout /></PrivateRoute>}>
           <Route index element={<Navigate to="/tasks" replace />} />
           <Route path="tasks" element={<TasksPage />} />
+          <Route path="nutrition" element={<NutritionPage />} />
           <Route path="goals" element={<GoalsPage />} />
           <Route path="weekly" element={<WeeklyPage />} />
           <Route path="archive" element={<ArchivePage />} />

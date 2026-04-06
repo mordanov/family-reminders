@@ -1,6 +1,7 @@
 {
   "nav": {
     "tasks": "Tasks",
+    "nutrition": "Nutrition",
     "goals": "Life Goals",
     "weekly": "Weekly",
     "archive": "Archive",
@@ -179,6 +180,26 @@
       "thisOnly": "This occurrence only",
       "thisFuture": "This & future occurrences"
     }
+  },
+  "nutrition": {
+    "title": "Nutrition",
+    "mealPlan": "Meal Plan",
+    "meal": "Meal",
+    "adults": "Adults",
+    "children": "Children",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "today": "Today",
+    "shoppingList": "Shopping List",
+    "addItemPlaceholder": "New item…",
+    "addItem": "Add",
+    "clearList": "Clear list",
+    "newList": "New list",
+    "cleared": "List cleared",
+    "newVersionCreated": "New version created",
+    "saveError": "Failed to save",
+    "loadError": "Failed to load"
   },
   "common": {
     "loading": "Loading…"

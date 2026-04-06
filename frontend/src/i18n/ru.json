@@ -1,6 +1,7 @@
 {
   "nav": {
     "tasks": "Задачи",
+    "nutrition": "Питание",
     "goals": "Цели",
     "weekly": "Неделя",
     "archive": "Архив",
@@ -179,6 +180,26 @@
       "thisOnly": "Только это событие",
       "thisFuture": "Это и следующие события"
     }
+  },
+  "nutrition": {
+    "title": "Питание",
+    "mealPlan": "Меню",
+    "meal": "Приём пищи",
+    "adults": "Взрослые",
+    "children": "Дети",
+    "breakfast": "Завтрак",
+    "lunch": "Обед",
+    "dinner": "Ужин",
+    "today": "Сегодня",
+    "shoppingList": "Список покупок",
+    "addItemPlaceholder": "Новый пункт…",
+    "addItem": "Добавить",
+    "clearList": "Очистить список",
+    "newList": "Новый список",
+    "cleared": "Список очищен",
+    "newVersionCreated": "Новая версия создана",
+    "saveError": "Не удалось сохранить",
+    "loadError": "Не удалось загрузить"
   },
   "common": {
     "loading": "Загрузка…"
