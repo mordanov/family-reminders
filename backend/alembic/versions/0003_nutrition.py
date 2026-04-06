@@ -21,8 +21,8 @@ def upgrade() -> None:
         sa.Column("id", sa.Integer(), primary_key=True),
         sa.Column("date", sa.Date(), nullable=False),
         sa.Column("meal_type", sa.String(20), nullable=False),
-        sa.Column("adults_text", sa.Text(), nullable=False, server_default=""),
-        sa.Column("children_text", sa.Text(), nullable=False, server_default=""),
+        sa.Column("adults_text", sa.Text(), nullable=False, server_default="''"),
+        sa.Column("children_text", sa.Text(), nullable=False, server_default="''"),
         sa.UniqueConstraint("date", "meal_type", name="uq_meal_plans_date_meal_type"),
     )
 

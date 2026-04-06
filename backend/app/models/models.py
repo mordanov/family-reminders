@@ -147,7 +147,6 @@ class ShoppingListVersion(Base):
     items = relationship(
         "ShoppingListItem", back_populates="version",
         cascade="all, delete-orphan",
-        order_by="ShoppingListItem.position",
     )
 
 
