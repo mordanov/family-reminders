@@ -6,9 +6,6 @@
 .input:focus, .select:focus, .textarea:focus { border-color: var(--accent); }
 .select { appearance: none; cursor: pointer; }
 .textarea { resize: vertical; min-height: 60px; }
-.colorRow { display: flex; align-items: center; gap: 8px; }
-.colorPicker { width: 36px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: none; cursor: pointer; padding: 2px; }
-.colorVal { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
 .userList { display: flex; flex-wrap: wrap; gap: 8px; }
 .userChip { display: flex; align-items: center; gap: 6px; font-size: 13px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 10px; cursor: pointer; transition: border-color var(--transition); }
 .userChip:hover { border-color: var(--accent); }

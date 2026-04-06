@@ -44,11 +44,12 @@ export default function ActivitiesBlock({ activities, categories, onRefresh }) {
         <div className={styles.list}>
           {activities.map((act) => {
             const cat = getCat(act.category_id)
+            const catColor = cat?.color ?? '#6366f1'
             return (
               <div
                 key={act.id}
                 className={`${styles.card} ${act.completed ? styles.completed : ''}`}
-                style={{ borderLeftColor: act.color }}
+                style={{ '--cat-color': catColor }}
               >
                 <button
                   className={`${styles.checkBtn} ${act.completed ? styles.checked : ''}`}

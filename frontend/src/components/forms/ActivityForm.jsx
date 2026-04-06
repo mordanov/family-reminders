@@ -12,7 +12,6 @@ export default function ActivityForm({ activity, categories, onClose, onSaved })
   const [form, setForm] = useState({
     description: activity?.description ?? '',
     category_id: activity?.category_id ?? '',
-    color: activity?.color ?? '#7c6aff',
     priority: activity?.priority ?? 5,
     assigned_user_ids: activity?.assigned_user_ids ?? [],
   })
@@ -65,14 +64,6 @@ export default function ActivityForm({ activity, categories, onClose, onSaved })
           <div className={styles.field}>
             <label className={styles.label}>{t('forms.activity.priority')}</label>
             <input type="number" min={1} max={10} className={styles.input} value={form.priority} onChange={(e) => set('priority', e.target.value)} />
-          </div>
-        </div>
-
-        <div className={styles.field}>
-          <label className={styles.label}>{t('forms.task.color')}</label>
-          <div className={styles.colorRow}>
-            <input type="color" className={styles.colorPicker} value={form.color} onChange={(e) => set('color', e.target.value)} />
-            <span className={styles.colorVal}>{form.color}</span>
           </div>
         </div>
 

@@ -10,13 +10,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--bg-elevated);
+  background: color-mix(in srgb, var(--cat-color) 15%, var(--bg-elevated));
   border-radius: var(--radius-sm);
-  border-left: 4px solid var(--accent);
+  border: 1px solid color-mix(in srgb, var(--cat-color) 35%, transparent);
   padding: 11px 14px;
   transition: background var(--transition), opacity var(--transition);
 }
-.card:hover { background: var(--bg-hover); }
+.card:hover { background: color-mix(in srgb, var(--cat-color) 22%, var(--bg-elevated)); }
 .card:hover .actions { opacity: 1; }
 .card.completed { opacity: 0.5; }
 
