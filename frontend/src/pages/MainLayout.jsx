@@ -12,10 +12,9 @@ export default function MainLayout() {
   const { t } = useTranslation()
 
   const navItems = [
+    { to: '/weekly', label: t('nav.weekly'), icon: '▦' },
     { to: '/tasks', label: t('nav.tasks'), icon: '◻' },
     { to: '/nutrition', label: t('nav.nutrition'), icon: '◑' },
-    { to: '/goals', label: t('nav.goals'), icon: '◈' },
-    { to: '/weekly', label: t('nav.weekly'), icon: '▦' },
     { to: '/archive', label: t('nav.archive'), icon: '◫' },
   ]
 
