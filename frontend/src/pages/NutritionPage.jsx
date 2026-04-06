@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import {
   getMealPlan, upsertMealPlan,
   getShoppingList, addShoppingItem, updateShoppingItem, deleteShoppingItem,
-  clearShoppingList, newShoppingListVersion,
+  newShoppingListVersion,
 } from '../api/client'
 import styles from './NutritionPage.module.css'
 
@@ -140,16 +140,6 @@ export default function NutritionPage() {
     }
   }
 
-  const handleClearList = async () => {
-    try {
-      const r = await clearShoppingList()
-      setShoppingList(r.data)
-      toast.success(t('nutrition.cleared'))
-    } catch {
-      toast.error(t('nutrition.saveError'))
-    }
-  }
-
   const handleNewVersion = async () => {
     try {
       const r = await newShoppingListVersion()
@@ -221,8 +211,11 @@ export default function NutritionPage() {
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>{t('nutrition.shoppingList')}</h2>
           <div className={styles.shoppingActions}>
-            <button className={styles.clearBtn} onClick={handleClearList}>{t('nutrition.clearList')}</button>
-            <button className={styles.newListBtn} onClick={handleNewVersion}>{t('nutrition.newList')}</button>
+            <button
+              className={styles.newListBtn}
+              onClick={handleNewVersion}
+              disabled={shoppingList.items.length === 0}
+            >{t('nutrition.clearList')}</button>
           </div>
         </div>
 
