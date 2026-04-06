@@ -1,3 +1,5 @@
+from datetime import date as DateType
+
 from sqlalchemy import select, update, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
@@ -12,21 +14,23 @@ class NutritionRepository:
     # ── Meal plan ──────────────────────────────────────────────────────────
 
     async def get_meal_plan(self, date: str) -> list[MealPlan]:
+        d = DateType.fromisoformat(date)
         result = await self.db.execute(
-            select(MealPlan).where(MealPlan.date == date)
+            select(MealPlan).where(MealPlan.date == d)
         )
         return result.scalars().all()
 
     async def upsert_meal_plan(
         self, date: str, meal_type: str, adults_text: str, children_text: str
     ) -> MealPlan:
+        d = DateType.fromisoformat(date)
         result = await self.db.execute(
-            select(MealPlan).where(MealPlan.date == date, MealPlan.meal_type == meal_type)
+            select(MealPlan).where(MealPlan.date == d, MealPlan.meal_type == meal_type)
         )
         row = result.scalar_one_or_none()
         if row is None:
             row = MealPlan(
-                date=date, meal_type=meal_type,
+                date=d, meal_type=meal_type,
                 adults_text=adults_text, children_text=children_text,
             )
             self.db.add(row)
