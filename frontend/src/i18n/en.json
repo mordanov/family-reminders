@@ -70,19 +70,19 @@
   },
   "archive": {
     "title": "Archive",
-    "tasksTab": "Tasks",
-    "activitiesTab": "Activities",
+    "tasksTab": "Habits",
+    "activitiesTab": "Day Tasks",
     "startDate": "From",
     "endDate": "To",
     "category": "Category",
     "allCategories": "All categories",
     "apply": "Apply",
     "loadError": "Failed to load archive",
-    "noTasks": "No tasks for the selected period.",
-    "noActivities": "No completed activities.",
+    "noTasks": "No habits for the selected period.",
+    "noActivities": "No completed day tasks.",
     "time": "Time",
     "description": "Description",
-    "completedActivities": "Completed activities"
+    "completedActivities": "Completed day tasks"
   },
   "settings": {
     "title": "Settings",

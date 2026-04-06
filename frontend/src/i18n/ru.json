@@ -70,19 +70,19 @@
   },
   "archive": {
     "title": "Архив",
-    "tasksTab": "Задачи",
-    "activitiesTab": "Активности",
+    "tasksTab": "Привычки",
+    "activitiesTab": "Задачи дня",
     "startDate": "С",
     "endDate": "По",
     "category": "Категория",
     "allCategories": "Все категории",
     "apply": "Применить",
     "loadError": "Не удалось загрузить архив",
-    "noTasks": "Задач за выбранный период нет.",
-    "noActivities": "Завершённых активностей нет.",
+    "noTasks": "Привычек за выбранный период нет.",
+    "noActivities": "Завершённых задач дня нет.",
     "time": "Время",
     "description": "Описание",
-    "completedActivities": "Завершённые активности"
+    "completedActivities": "Завершённые задачи дня"
   },
   "settings": {
     "title": "Настройки",

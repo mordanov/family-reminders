@@ -143,7 +143,7 @@ export default function ArchivePage() {
               {activities.map((act) => {
                 const cat = getCat(act.category_id)
                 return (
-                  <div key={act.id} className={styles.actRow} style={{ borderLeftColor: act.color }}>
+                  <div key={act.id} className={styles.actRow} style={{ borderLeftColor: cat?.color ?? '#6366f1' }}>
                     <span className={styles.checkIcon}>✓</span>
                     <span className={styles.desc}>{act.description}</span>
                     {cat && <span className={styles.catBadge}>{cat.emoji} {cat.name}</span>}
