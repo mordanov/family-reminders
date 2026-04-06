@@ -50,14 +50,14 @@ export default function TasksPage() {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
+        <div className={styles.date}>{new Date().toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric' })}</div>
         <h1 className={styles.title}>{t('tasks.title')}</h1>
-        <span className={styles.date}>{new Date().toLocaleDateString(locale, { weekday: 'long', month: 'long', day: 'numeric' })}</span>
       </div>
 
       <div className={styles.blocks}>
         <RemindersBlock reminders={reminders} categories={categories} />
-        <TodayTasksBlock tasks={tasks} categories={categories} onRefresh={refresh} />
         <ActivitiesBlock activities={activities} categories={categories} onRefresh={refresh} />
+        <TodayTasksBlock tasks={tasks} categories={categories} onRefresh={refresh} />
       </div>
     </div>
   )

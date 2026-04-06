@@ -23,7 +23,7 @@
     "error": "Failed to load data"
   },
   "todayTasks": {
-    "title": "Today's Tasks",
+    "title": "Habits",
     "add": "+ Add Task",
     "empty": "No tasks for today. Enjoy your day!",
     "recurring": "recurring",
@@ -34,7 +34,7 @@
     "title": "Reminders"
   },
   "activities": {
-    "title": "Activities",
+    "title": "Day Tasks",
     "add": "+ Add Activity",
     "empty": "No activities yet.",
     "markComplete": "Mark complete",
