@@ -1,0 +1,5 @@
+.root { padding: 32px; max-width: 900px; margin: 0 auto; }
+.loading { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--text-muted); }
+@media (max-width: 640px) {
+  .root { padding: 16px; }
+}
