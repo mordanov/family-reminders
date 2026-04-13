@@ -1,0 +1,48 @@
+.form { display: flex; flex-direction: column; gap: 16px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.label { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.input { background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius-sm); padding: 8px 10px; font-size: 13px; font-family: var(--font); width: 100%; box-sizing: border-box; }
+.input:focus { outline: none; border-color: var(--accent); }
+
+.dateRow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.error { font-size: 12px; color: var(--danger); margin: 0; }
+
+.section { display: flex; flex-direction: column; gap: 10px; }
+.sectionHeader { display: flex; align-items: center; justify-content: space-between; }
+.sectionTitle { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.addBtn { background: none; border: 1px dashed var(--border); color: var(--accent); font-size: 12px; border-radius: var(--radius-sm); padding: 4px 10px; cursor: pointer; }
+.addBtn:hover { background: var(--bg-elevated); }
+
+.intakeBlock { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; display: flex; flex-direction: column; gap: 10px; background: var(--bg-elevated); }
+.intakeHeader { display: flex; gap: 8px; align-items: center; }
+.removeIntakeBtn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 2px 6px; border-radius: var(--radius-sm); flex-shrink: 0; }
+.removeIntakeBtn:hover { color: var(--danger); background: var(--bg-hover); }
+
+.itemsSection { display: flex; flex-direction: column; gap: 6px; padding-left: 4px; }
+.itemRow { display: flex; align-items: center; gap: 8px; }
+.itemNameWrap { flex: 1; position: relative; }
+.itemInput { background: var(--bg-card, var(--bg-elevated)); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 13px; font-family: var(--font); width: 100%; box-sizing: border-box; }
+.itemInput:focus { outline: none; border-color: var(--accent); }
+
+.suggestions { position: absolute; top: calc(100% + 2px); left: 0; right: 0; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); z-index: 100; max-height: 160px; overflow-y: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.suggestionItem { padding: 7px 10px; font-size: 13px; cursor: pointer; color: var(--text); }
+.suggestionItem:hover { background: var(--bg-hover); }
+
+.pillSelector { display: flex; gap: 4px; flex-shrink: 0; }
+.pillBtn { width: 28px; height: 28px; border: 1px solid var(--border); background: none; color: var(--text-muted); border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; font-weight: 600; }
+.pillBtn:hover { background: var(--bg-hover); color: var(--text); }
+.pillBtnActive { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
+
+.removeBtn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 2px 6px; border-radius: var(--radius-sm); flex-shrink: 0; }
+.removeBtn:hover { color: var(--danger); background: var(--bg-hover); }
+
+.addItemBtn { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; text-align: left; padding: 2px 0; }
+.addItemBtn:hover { color: var(--accent); }
+
+.footer { display: flex; justify-content: flex-end; gap: 8px; padding-top: 4px; border-top: 1px solid var(--border); }
+.cancelBtn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 16px; border-radius: var(--radius-sm); font-size: 13px; cursor: pointer; }
+.cancelBtn:hover { background: var(--bg-elevated); color: var(--text); }
+.submitBtn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; }
+.submitBtn:hover { background: var(--accent-hover, var(--accent)); opacity: 0.9; }

@@ -1,0 +1,71 @@
+.root { padding: 32px; max-width: 960px; margin: 0 auto; }
+.loading { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--text-muted); }
+.empty { color: var(--text-muted); font-size: 14px; margin-top: 24px; }
+
+/* ── List view ── */
+.listHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.title { font-size: 24px; font-weight: 700; margin: 0; }
+.newBtn { background: var(--accent); border: none; color: #fff; padding: 8px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; }
+.newBtn:hover { opacity: 0.9; }
+
+.periodList { display: flex; flex-direction: column; gap: 12px; }
+.periodCard { position: relative; background: var(--bg-card, var(--bg-elevated)); border: 1px solid var(--border); border-radius: 10px; padding: 16px 48px 16px 16px; cursor: pointer; transition: border-color var(--transition); }
+.periodCard:hover { border-color: var(--accent); }
+
+.cardTop { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.periodName { font-size: 16px; font-weight: 600; }
+.cardMeta { display: flex; gap: 16px; margin-bottom: 8px; }
+.dateRange { font-size: 13px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.intakeCount { font-size: 13px; color: var(--text-muted); }
+.cardIntakes { display: flex; flex-wrap: wrap; gap: 6px; }
+.intakeTag { font-size: 11px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; color: var(--text-muted); }
+
+.badgeActive { font-size: 11px; font-weight: 600; background: rgba(99,180,99,0.15); color: #4caf7d; border-radius: 4px; padding: 2px 8px; }
+.badgeClosed { font-size: 11px; font-weight: 600; background: var(--bg-elevated); color: var(--text-muted); border-radius: 4px; padding: 2px 8px; }
+
+.deleteBtn { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 4px 6px; border-radius: var(--radius-sm); }
+.deleteBtn:hover { color: var(--danger); background: var(--bg-hover); }
+
+/* ── Detail view ── */
+.detailHeader { margin-bottom: 20px; }
+.backBtn { background: none; border: none; color: var(--accent); font-size: 13px; cursor: pointer; padding: 0 0 12px 0; }
+.backBtn:hover { text-decoration: underline; }
+.detailTitleRow { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.detailName { font-size: 22px; font-weight: 700; }
+.detailDates { font-size: 13px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* Stats bar */
+.statsBar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; padding: 14px 16px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; }
+.statChip { display: flex; flex-direction: column; align-items: center; min-width: 80px; }
+.statValue { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.statLabel { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 2px; }
+
+/* Calendar */
+.calendarWrap { overflow-x: auto; }
+.calendarTable { border-collapse: collapse; width: 100%; min-width: 400px; }
+.calendarTable th, .calendarTable td { padding: 0; }
+
+.thDate { width: 140px; }
+.thIntake { padding: 10px 8px 12px; text-align: center; border-bottom: 2px solid var(--border); min-width: 90px; }
+.intakeHeaderName { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.intakeItems { display: flex; flex-direction: column; gap: 2px; }
+.itemBadge { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+
+.tdDate { padding: 6px 8px; font-size: 13px; color: var(--text-muted); border-bottom: 1px solid var(--border); white-space: nowrap; min-width: 130px; }
+.tdCell { text-align: center; border-bottom: 1px solid var(--border); padding: 4px; }
+
+.rowToday .tdDate { color: var(--accent); font-weight: 600; }
+.rowToday .tdCell { background: rgba(99,102,241,0.04); }
+
+.toggleBtn { width: 34px; height: 34px; border: 1px solid var(--border); background: none; color: var(--text-muted); border-radius: 8px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; margin: auto; transition: background var(--transition), border-color var(--transition); }
+.toggleBtn:hover { background: var(--bg-elevated); border-color: var(--accent); }
+.toggleTaken { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
+
+@media (max-width: 640px) {
+  .root { padding: 16px; }
+  .statsBar { gap: 8px; }
+  .statChip { min-width: 60px; }
+  .statValue { font-size: 18px; }
+  .thDate { width: 100px; }
+  .tdDate { font-size: 11px; min-width: 90px; }
+}

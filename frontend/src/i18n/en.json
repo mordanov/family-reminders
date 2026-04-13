@@ -6,6 +6,7 @@
     "goals": "Life Goals",
     "weekly": "Calendar",
     "incidents": "Incidents",
+    "medications": "Medications",
     "archive": "Archive",
     "settings": "Settings",
     "signOut": "Sign out"
@@ -253,6 +254,47 @@
     "newVersionCreated": "New version created",
     "saveError": "Failed to save",
     "loadError": "Failed to load"
+  },
+  "medications": {
+    "title": "Medications",
+    "newPeriod": "+ New Course",
+    "empty": "No medication courses yet.",
+    "active": "Active",
+    "closed": "Closed",
+    "intakes": "intakes",
+    "deleteConfirm": "Delete this course?",
+    "deleted": "Course deleted",
+    "created": "Course created",
+    "loadError": "Failed to load medications",
+    "saveError": "Failed to save",
+    "deleteError": "Failed to delete",
+    "backToList": "← All courses",
+    "markTaken": "Mark as taken",
+    "markUntaken": "Mark as not taken",
+    "stats": {
+      "title": "Statistics",
+      "completed": "Complete days",
+      "partial": "Partial days",
+      "missed": "Missed days",
+      "pillsTaken": "Pills taken"
+    },
+    "form": {
+      "title": "New Course",
+      "name": "Course name",
+      "namePlaceholder": "e.g. Antibiotics",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "intakes": "Intakes",
+      "addIntake": "+ Add intake",
+      "intakeName": "Intake name",
+      "intakeNamePlaceholder": "e.g. Morning",
+      "medications": "Medications",
+      "addMedication": "+ Add medication",
+      "medicationName": "Medication name",
+      "pills": "pills",
+      "dateError": "End date must be on or after start date",
+      "create": "Create Course"
+    }
   },
   "common": {
     "loading": "Loading…"

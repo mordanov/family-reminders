@@ -197,3 +197,54 @@ class Incident(Base):
 
     creator = relationship("User", foreign_keys=[creator_id])
 
+
+class MedicationPeriod(Base):
+    __tablename__ = "medication_periods"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    name = Column(String(255), nullable=False)
+    start_date = Column(Date, nullable=False)
+    end_date = Column(Date, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    intakes = relationship(
+        "MedicationIntake", back_populates="period",
+        cascade="all, delete-orphan",
+        order_by="MedicationIntake.order_index",
+    )
+
+
+class MedicationIntake(Base):
+    __tablename__ = "medication_intakes"
+    id = Column(Integer, primary_key=True)
+    period_id = Column(Integer, ForeignKey("medication_periods.id", ondelete="CASCADE"), nullable=False)
+    name = Column(String(255), nullable=False)
+    order_index = Column(Integer, nullable=False, default=0)
+
+    period = relationship("MedicationPeriod", back_populates="intakes")
+    items = relationship("MedicationItem", back_populates="intake", cascade="all, delete-orphan")
+    logs = relationship("MedicationLog", back_populates="intake", cascade="all, delete-orphan")
+
+
+class MedicationItem(Base):
+    __tablename__ = "medication_items"
+    id = Column(Integer, primary_key=True)
+    intake_id = Column(Integer, ForeignKey("medication_intakes.id", ondelete="CASCADE"), nullable=False)
+    name = Column(String(255), nullable=False)
+    pill_count = Column(Integer, nullable=False, default=1)
+
+    intake = relationship("MedicationIntake", back_populates="items")
+
+
+class MedicationLog(Base):
+    __tablename__ = "medication_logs"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    intake_id = Column(Integer, ForeignKey("medication_intakes.id", ondelete="CASCADE"), nullable=False)
+    date = Column(Date, nullable=False)
+    taken = Column(Boolean, nullable=False, default=False)
+
+    intake = relationship("MedicationIntake", back_populates="logs")
+
+    __table_args__ = (UniqueConstraint("intake_id", "date", name="uq_medication_log_intake_date"),)
+

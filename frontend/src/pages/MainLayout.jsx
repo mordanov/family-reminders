@@ -17,6 +17,7 @@ export default function MainLayout() {
     { to: '/nutrition', label: t('nav.nutrition'), icon: '◑' },
     { to: '/payments', label: t('nav.payments'), icon: '◎' },
     { to: '/incidents', label: t('nav.incidents'), icon: '◈' },
+    { to: '/medications', label: t('nav.medications'), icon: '◍' },
     { to: '/archive', label: t('nav.archive'), icon: '◫' },
   ]
 

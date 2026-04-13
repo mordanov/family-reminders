@@ -6,6 +6,7 @@
     "goals": "Цели",
     "weekly": "Календарь",
     "incidents": "Инциденты",
+    "medications": "Лекарства",
     "archive": "Архив",
     "settings": "Настройки",
     "signOut": "Выйти"
@@ -253,6 +254,47 @@
     "newVersionCreated": "Новая версия создана",
     "saveError": "Не удалось сохранить",
     "loadError": "Не удалось загрузить"
+  },
+  "medications": {
+    "title": "Лекарства",
+    "newPeriod": "+ Новый курс",
+    "empty": "Курсов приёма лекарств пока нет.",
+    "active": "Активный",
+    "closed": "Завершён",
+    "intakes": "приёма",
+    "deleteConfirm": "Удалить этот курс?",
+    "deleted": "Курс удалён",
+    "created": "Курс создан",
+    "loadError": "Не удалось загрузить лекарства",
+    "saveError": "Не удалось сохранить",
+    "deleteError": "Не удалось удалить",
+    "backToList": "← Все курсы",
+    "markTaken": "Отметить принятым",
+    "markUntaken": "Отметить непринятым",
+    "stats": {
+      "title": "Статистика",
+      "completed": "Полных дней",
+      "partial": "Частичных дней",
+      "missed": "Пропущено дней",
+      "pillsTaken": "Принято таблеток"
+    },
+    "form": {
+      "title": "Новый курс",
+      "name": "Название курса",
+      "namePlaceholder": "напр. Антибиотики",
+      "startDate": "Дата начала",
+      "endDate": "Дата окончания",
+      "intakes": "Приёмы",
+      "addIntake": "+ Добавить приём",
+      "intakeName": "Название приёма",
+      "intakeNamePlaceholder": "напр. Утро",
+      "medications": "Лекарства",
+      "addMedication": "+ Добавить лекарство",
+      "medicationName": "Название лекарства",
+      "pills": "таб.",
+      "dateError": "Дата окончания должна быть не раньше даты начала",
+      "create": "Создать курс"
+    }
   },
   "common": {
     "loading": "Загрузка…"

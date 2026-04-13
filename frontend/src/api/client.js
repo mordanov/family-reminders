@@ -87,4 +87,12 @@ export const createIncident = (data) => api.post('/incidents', data)
 export const updateIncident = (id, data) => api.put(`/incidents/${id}`, data)
 export const deleteIncident = (id) => api.delete(`/incidents/${id}`)
 
+// Medications
+export const getMedicationPeriods = () => api.get('/medications/periods')
+export const getMedicationPeriod = (id) => api.get(`/medications/periods/${id}`)
+export const createMedicationPeriod = (data) => api.post('/medications/periods', data)
+export const deleteMedicationPeriod = (id) => api.delete(`/medications/periods/${id}`)
+export const upsertMedicationLog = (data) => api.post('/medications/log', data)
+export const getMedicationSuggestions = (q) => api.get('/medications/suggestions', { params: { q } })
+
 export default api
