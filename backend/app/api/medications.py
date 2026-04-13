@@ -47,6 +47,16 @@ async def get_period(
     return await svc.get_period_detail(period_id, current_user.id)
 
 
+@router.post("/periods/{period_id}/copy", response_model=MedicationPeriodOut, status_code=201)
+async def copy_period(
+    period_id: int,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    svc = MedicationService(db)
+    return await svc.copy_period(period_id, current_user.id)
+
+
 @router.delete("/periods/{period_id}")
 async def delete_period(
     period_id: int,

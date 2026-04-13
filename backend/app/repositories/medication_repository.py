@@ -51,7 +51,7 @@ class MedicationRepository:
             .options(
                 selectinload(MedicationPeriod.intakes).selectinload(MedicationIntake.items)
             )
-            .order_by(MedicationPeriod.start_date.desc())
+            .order_by(MedicationPeriod.created_at.asc())
         )
         return list(result.scalars().all())
 

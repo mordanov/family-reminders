@@ -7,7 +7,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.models import MedicationPeriod
 from app.repositories.medication_repository import MedicationRepository
 from app.schemas.medications import (
+    MedicationIntakeCreate,
     MedicationIntakeOut,
+    MedicationItemCreate,
     MedicationItemOut,
     MedicationLogOut,
     MedicationLogRequest,
@@ -84,6 +86,31 @@ class MedicationService:
         if period.user_id != user_id:
             raise HTTPException(status_code=403, detail="Forbidden")
         await self.repo.delete_period(period)
+
+    async def copy_period(self, period_id: int, user_id: int) -> MedicationPeriodOut:
+        period = await self.repo.get_period_detail(period_id)
+        if not period:
+            raise HTTPException(status_code=404, detail="Period not found")
+        if period.user_id != user_id:
+            raise HTTPException(status_code=403, detail="Forbidden")
+        payload = MedicationPeriodCreate(
+            name=f"{period.name} копия",
+            start_date=period.start_date,
+            end_date=period.end_date,
+            intakes=[
+                MedicationIntakeCreate(
+                    name=intake.name,
+                    order_index=intake.order_index,
+                    items=[
+                        MedicationItemCreate(name=item.name, pill_count=item.pill_count)
+                        for item in intake.items
+                    ],
+                )
+                for intake in sorted(period.intakes, key=lambda i: i.order_index)
+            ],
+        )
+        new_period = await self.repo.create_period(user_id, payload)
+        return _serialize_period(new_period)
 
     async def upsert_log(self, user_id: int, data: MedicationLogRequest) -> MedicationLogOut:
         period = await self.repo.get_period_by_intake(data.intake_id, user_id)

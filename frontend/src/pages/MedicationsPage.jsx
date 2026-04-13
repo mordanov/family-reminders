@@ -3,6 +3,7 @@ import { eachDayOfInterval, format, parseISO } from 'date-fns'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import {
+  copyMedicationPeriod,
   deleteMedicationPeriod,
   getMedicationPeriod,
   getMedicationPeriods,
@@ -94,6 +95,17 @@ export default function MedicationsPage() {
       if (detail?.id === periodId) setDetail(null)
     } catch {
       toast.error(t('medications.deleteError'))
+    }
+  }
+
+  const handleCopy = async (e, periodId) => {
+    e.stopPropagation()
+    try {
+      const res = await copyMedicationPeriod(periodId)
+      toast.success(t('medications.copied'))
+      setPeriods((ps) => [...ps, res.data])
+    } catch {
+      toast.error(t('medications.copyError'))
     }
   }
 
@@ -262,6 +274,13 @@ export default function MedicationsPage() {
                 ))}
               </div>
             )}
+            <button
+              className={styles.copyBtn}
+              onClick={(e) => handleCopy(e, period.id)}
+              title={t('medications.copied')}
+            >
+              ⧉
+            </button>
             <button
               className={styles.deleteBtn}
               onClick={(e) => handleDelete(e, period.id)}

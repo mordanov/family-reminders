@@ -92,6 +92,7 @@ export const getMedicationPeriods = () => api.get('/medications/periods')
 export const getMedicationPeriod = (id) => api.get(`/medications/periods/${id}`)
 export const createMedicationPeriod = (data) => api.post('/medications/periods', data)
 export const deleteMedicationPeriod = (id) => api.delete(`/medications/periods/${id}`)
+export const copyMedicationPeriod = (id) => api.post(`/medications/periods/${id}/copy`)
 export const upsertMedicationLog = (data) => api.post('/medications/log', data)
 export const getMedicationSuggestions = (q) => api.get('/medications/suggestions', { params: { q } })
 
