@@ -265,6 +265,7 @@
     "deleteConfirm": "Delete this course?",
     "deleted": "Course deleted",
     "created": "Course created",
+    "copy": "Copy course",
     "copied": "Course copied",
     "copyError": "Failed to copy course",
     "loadError": "Failed to load medications",

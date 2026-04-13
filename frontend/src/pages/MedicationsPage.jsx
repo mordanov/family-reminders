@@ -3,7 +3,6 @@ import { eachDayOfInterval, format, parseISO } from 'date-fns'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import {
-  copyMedicationPeriod,
   deleteMedicationPeriod,
   getMedicationPeriod,
   getMedicationPeriods,
@@ -54,7 +53,7 @@ export default function MedicationsPage() {
   const [detailLoading, setDetailLoading] = useState(false)
   const [detail, setDetail] = useState(null)
   const [logs, setLogs] = useState({})
-  const [showForm, setShowForm] = useState(false)
+  const [formInitialData, setFormInitialData] = useState(null)
 
   const loadPeriods = async () => {
     try {
@@ -98,15 +97,9 @@ export default function MedicationsPage() {
     }
   }
 
-  const handleCopy = async (e, periodId) => {
+  const handleCopy = (e, period) => {
     e.stopPropagation()
-    try {
-      const res = await copyMedicationPeriod(periodId)
-      toast.success(t('medications.copied'))
-      setPeriods((ps) => [...ps, res.data])
-    } catch {
-      toast.error(t('medications.copyError'))
-    }
+    setFormInitialData(period)
   }
 
   const handleToggle = async (intakeId, dateStr) => {
@@ -230,7 +223,7 @@ export default function MedicationsPage() {
     <div className={styles.root}>
       <div className={styles.listHeader}>
         <h1 className={styles.title}>{t('medications.title')}</h1>
-        <button className={styles.newBtn} onClick={() => setShowForm(true)}>
+        <button className={styles.newBtn} onClick={() => setFormInitialData({})}>
           {t('medications.newPeriod')}
         </button>
       </div>
@@ -276,8 +269,8 @@ export default function MedicationsPage() {
             )}
             <button
               className={styles.copyBtn}
-              onClick={(e) => handleCopy(e, period.id)}
-              title={t('medications.copied')}
+              onClick={(e) => handleCopy(e, period)}
+              title={t('medications.copy')}
             >
               ⧉
             </button>
@@ -292,10 +285,11 @@ export default function MedicationsPage() {
         ))}
       </div>
 
-      {showForm && (
+      {formInitialData !== null && (
         <PeriodForm
-          onClose={() => setShowForm(false)}
-          onSaved={() => { setShowForm(false); loadPeriods() }}
+          initialData={formInitialData}
+          onClose={() => setFormInitialData(null)}
+          onSaved={() => { setFormInitialData(null); loadPeriods() }}
         />
       )}
     </div>

@@ -84,14 +84,28 @@ function MedicationItemRow({ item, onChange, onRemove }) {
 let _uid = 0
 const uid = () => ++_uid
 
-export default function PeriodForm({ onClose, onSaved }) {
+export default function PeriodForm({ onClose, onSaved, initialData }) {
   const { t } = useTranslation()
   const today = new Date().toISOString().split('T')[0]
 
-  const [form, setForm] = useState({ name: '', start_date: today, end_date: today })
-  const [intakes, setIntakes] = useState([
-    { id: uid(), name: '', items: [{ id: uid(), name: '', pill_count: 1 }] },
-  ])
+  const isCopy = initialData && initialData.name
+
+  const [form, setForm] = useState(() => ({
+    name: isCopy ? `${initialData.name} копия` : '',
+    start_date: initialData?.start_date ?? today,
+    end_date: initialData?.end_date ?? today,
+  }))
+  const [intakes, setIntakes] = useState(() =>
+    isCopy && initialData.intakes?.length
+      ? initialData.intakes.map((intake) => ({
+          id: uid(),
+          name: intake.name,
+          items: intake.items?.length
+            ? intake.items.map((item) => ({ id: uid(), name: item.name, pill_count: item.pill_count }))
+            : [{ id: uid(), name: '', pill_count: 1 }],
+        }))
+      : [{ id: uid(), name: '', items: [{ id: uid(), name: '', pill_count: 1 }] }]
+  )
   const [error, setError] = useState('')
 
   const addIntake = () => {
