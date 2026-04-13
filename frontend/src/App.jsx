@@ -11,6 +11,7 @@ import PaymentsPage from './pages/PaymentsPage'
 import GoalsPage from './pages/GoalsPage'
 import WeeklyPage from './pages/WeeklyPage'
 import ArchivePage from './pages/ArchivePage'
+import IncidentsPage from './pages/IncidentsPage'
 
 function PrivateRoute({ children }) {
   const { token, user, loading } = useAuthStore()
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="goals" element={<GoalsPage />} />
           <Route path="weekly" element={<WeeklyPage />} />
           <Route path="archive" element={<ArchivePage />} />
+          <Route path="incidents" element={<IncidentsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
