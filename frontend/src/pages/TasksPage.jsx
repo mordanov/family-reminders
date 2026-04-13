@@ -95,9 +95,9 @@ export default function TasksPage() {
 
       <div className={styles.blocks}>
         <RemindersBlock reminders={reminders} categories={categories} />
-        <IncidentsBlock incidents={incidents} onRefresh={() => refresh(currentDate)} />
         <ActivitiesBlock activities={activities} categories={categories} onRefresh={() => refresh(currentDate)} />
         <TodayTasksBlock tasks={tasks} categories={categories} onRefresh={() => refresh(currentDate)} />
+        <IncidentsBlock incidents={incidents} onRefresh={() => refresh(currentDate)} />
       </div>
     </div>
   )
