@@ -1,0 +1,31 @@
+.block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.blockHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.blockTitle { font-size: 14px; font-weight: 600; }
+.addBtn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); padding: 6px 14px; font-size: 12px; font-weight: 500; }
+.addBtn:hover { background: var(--accent-hover); }
+
+.empty { color: var(--text-muted); font-size: 13px; text-align: center; padding: 20px 0; }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; }
+.cardTop { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.dateRange { font-size: 12px; color: var(--text-muted); }
+.importance { font-size: 14px; color: #f59e0b; white-space: nowrap; }
+.description { margin: 0 0 6px; font-size: 13px; }
+.actionsTaken { margin: 0; font-size: 12px; color: var(--text-muted); }
+
+.actions { margin-top: 8px; display: flex; justify-content: flex-end; gap: 4px; }
+.actionBtn {
+  background: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.actionBtn:hover { background: var(--bg-card); color: var(--text); }
+.actionBtn.danger:hover { color: var(--danger); }
+
+@media (max-width: 640px) {
+  .block { padding: 14px; }
+  .cardTop { flex-direction: column; align-items: flex-start; }
+}
+

@@ -81,4 +81,10 @@ export const deleteShoppingItem = (id) => api.delete(`/nutrition/shopping-list/i
 export const clearShoppingList = () => api.post('/nutrition/shopping-list/clear')
 export const newShoppingListVersion = () => api.post('/nutrition/shopping-list/new-version')
 
+// Incidents
+export const getIncidents = () => api.get('/incidents')
+export const createIncident = (data) => api.post('/incidents', data)
+export const updateIncident = (id, data) => api.put(`/incidents/${id}`, data)
+export const deleteIncident = (id) => api.delete(`/incidents/${id}`)
+
 export default api

@@ -182,3 +182,18 @@ class ReminderLog(Base):
     method = Column(String(32), default="email")
 
     task = relationship("Task", back_populates="reminder_logs")
+
+
+class Incident(Base):
+    __tablename__ = "incidents"
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    creator_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    start_datetime = Column(DateTime(timezone=True), nullable=False)
+    end_datetime = Column(DateTime(timezone=True), nullable=False)
+    description = Column(Text, nullable=False)
+    actions_taken = Column(Text, nullable=False)
+    importance = Column(Integer, nullable=False, default=3)
+
+    creator = relationship("User", foreign_keys=[creator_id])
+

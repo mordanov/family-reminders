@@ -35,6 +35,26 @@
   "reminders": {
     "title": "Reminders"
   },
+  "incidents": {
+    "title": "Incidents",
+    "add": "+ Add Incident",
+    "empty": "No incidents yet.",
+    "newTitle": "New Incident",
+    "editTitle": "Edit Incident",
+    "start": "Start date/time",
+    "end": "End date/time",
+    "description": "Event description",
+    "descriptionPlaceholder": "What happened?",
+    "actionsTaken": "Actions taken",
+    "actionsTakenPlaceholder": "What actions were taken?",
+    "importance": "Importance (1-5)",
+    "create": "Create Incident",
+    "created": "Incident created",
+    "updated": "Incident updated",
+    "deleted": "Incident deleted",
+    "saveError": "Failed to save incident",
+    "deleteError": "Failed to delete incident"
+  },
   "activities": {
     "title": "Day Tasks",
     "add": "+ Add Task",

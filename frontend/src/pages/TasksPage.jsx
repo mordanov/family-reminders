@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { format, addDays, isToday } from 'date-fns'
-import { getTodayTasks, getActivities, getReminders, getCategories } from '../api/client'
+import { getTodayTasks, getActivities, getReminders, getCategories, getIncidents } from '../api/client'
 import TodayTasksBlock from '../components/tasks/TodayTasksBlock'
 import ActivitiesBlock from '../components/activities/ActivitiesBlock'
 import RemindersBlock from '../components/tasks/RemindersBlock'
+import IncidentsBlock from '../components/tasks/IncidentsBlock'
 import styles from './TasksPage.module.css'
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState([])
   const [activities, setActivities] = useState([])
   const [reminders, setReminders] = useState([])
+  const [incidents, setIncidents] = useState([])
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -25,16 +27,18 @@ export default function TasksPage() {
       const todayStr = format(new Date(), 'yyyy-MM-dd')
       const isCurrentDay = dateStr === todayStr
 
-      const [tk, a, r, c] = await Promise.all([
+      const [tk, a, r, c, i] = await Promise.all([
         getTodayTasks(isCurrentDay ? undefined : dateStr),
         getActivities(),
         getReminders(),
         getCategories(),
+        getIncidents(),
       ])
       setTasks(tk.data)
       setActivities(a.data)
       setReminders(r.data)
       setCategories(c.data)
+      setIncidents(i.data)
     } catch {
       toast.error(t('tasks.error'))
     } finally {
@@ -91,6 +95,7 @@ export default function TasksPage() {
 
       <div className={styles.blocks}>
         <RemindersBlock reminders={reminders} categories={categories} />
+        <IncidentsBlock incidents={incidents} onRefresh={() => refresh(currentDate)} />
         <ActivitiesBlock activities={activities} categories={categories} onRefresh={() => refresh(currentDate)} />
         <TodayTasksBlock tasks={tasks} categories={categories} onRefresh={() => refresh(currentDate)} />
       </div>

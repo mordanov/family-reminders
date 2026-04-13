@@ -1,0 +1,46 @@
+.form { display: flex; flex-direction: column; gap: 14px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.input,
+.textarea {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 10px;
+  font-size: 13px;
+}
+.textarea { resize: vertical; min-height: 80px; }
+.input:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 24%, transparent);
+}
+
+.stars { display: flex; gap: 6px; }
+.starBtn {
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text-faint);
+  background: none;
+  padding: 2px;
+}
+.starBtn.active { color: #f59e0b; }
+
+.actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 2px; }
+.cancelBtn,
+.saveBtn {
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.cancelBtn { background: var(--bg-elevated); color: var(--text-muted); }
+.saveBtn { background: var(--accent); color: #fff; }
+.saveBtn:hover { background: var(--accent-hover); }
+
+@media (max-width: 640px) {
+  .row { grid-template-columns: 1fr; }
+}
+
