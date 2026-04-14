@@ -54,7 +54,7 @@ class Category(Base):
 class RecurringRule(Base):
     __tablename__ = "recurring_rules"
     id = Column(Integer, primary_key=True)
-    frequency = Column(SAEnum(RecurrenceFrequency), nullable=False)
+    frequency = Column(SAEnum(RecurrenceFrequency, native_enum=False), nullable=False)
     interval = Column(Integer, default=1)
     days_of_week = Column(String(32), nullable=True)  # comma-separated: 0,1,2 (Mon=0)
     end_date = Column(DateTime(timezone=True), nullable=True)
