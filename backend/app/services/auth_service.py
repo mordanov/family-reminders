@@ -10,14 +10,16 @@ class AuthService:
     def __init__(self, db: AsyncSession):
         self.repo = UserRepository(db)
 
-    async def login(self, username: str, password: str) -> Token:
+    async def login(self, username: str, password: str, remember_me: bool = False) -> Token:
+        from datetime import timedelta
         user = await self.repo.get_by_username(username)
         if not user or not verify_password(password, user.hashed_password):
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Incorrect username or password",
             )
-        token = create_access_token({"sub": user.username})
+        expires = timedelta(days=30) if remember_me else None
+        token = create_access_token({"sub": user.username}, expires_delta=expires)
         return Token(access_token=token)
 
     async def register(self, data: UserCreate) -> UserOut:

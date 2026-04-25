@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { clearRememberCookies } from '../utils/cookies'
 
 const api = axios.create({
   baseURL: '/api/v1',
@@ -15,6 +16,7 @@ api.interceptors.response.use(
   (err) => {
     if (err.response?.status === 401) {
       localStorage.removeItem('token')
+      clearRememberCookies()
       window.location.href = '/login'
     }
     return Promise.reject(err)
@@ -22,10 +24,11 @@ api.interceptors.response.use(
 )
 
 // Auth
-export const login = (username, password) => {
+export const login = (username, password, rememberMe = false) => {
   const form = new FormData()
   form.append('username', username)
   form.append('password', password)
+  form.append('remember_me', rememberMe ? 'true' : 'false')
   return api.post('/auth/login', form)
 }
 export const register = (data) => api.post('/auth/register', data)

@@ -16,6 +16,7 @@
     "username": "Имя пользователя",
     "usernamePlaceholder": "user1",
     "password": "Пароль",
+    "rememberMe": "Запомнить меня",
     "submit": "Войти",
     "submitting": "Вход…",
     "error": "Неверные данные",

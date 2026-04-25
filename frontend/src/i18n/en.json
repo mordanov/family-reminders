@@ -16,6 +16,7 @@
     "username": "Username",
     "usernamePlaceholder": "user1",
     "password": "Password",
+    "rememberMe": "Remember me",
     "submit": "Sign in",
     "submitting": "Signing in…",
     "error": "Invalid credentials",
